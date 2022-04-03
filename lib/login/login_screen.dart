@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 
 import '../const/constant.dart';
+import '../const/custom_button.dart';
 
 class LoginScreen extends StatelessWidget {
   const LoginScreen({Key? key}) : super(key: key);
@@ -13,9 +14,47 @@ class LoginScreen extends StatelessWidget {
           child: Column(
             children: [
               height40,
-              Text('Log In Seller'),
-              Center(child: Image.asset('assests/images/icon (2).png')),
-
+              Text(
+                'Log In Seller',
+                style: mainHeading,
+              ),
+              height10,
+              Center(
+                child: Image.asset('assests/images/icon (2).png'),
+              ),
+              height10,
+              Text('Enter your email and password below'),
+              height10,
+              Padding(
+                padding: const EdgeInsets.only(left: 20, right: 20),
+                child: TextFormField(
+                  keyboardType: TextInputType.multiline,
+                  maxLines: null,
+                  decoration: const InputDecoration(
+                      border: OutlineInputBorder(),
+                      fillColor: Colors.white,
+                      filled: true,
+                      labelText: 'Email address'),
+                ),
+              ),
+              height10,
+              Padding(
+                padding: const EdgeInsets.only(left: 20, right: 20),
+                child: TextFormField(
+                  keyboardType: TextInputType.multiline,
+                  maxLines: null,
+                  decoration: const InputDecoration(
+                      border: OutlineInputBorder(),
+                      fillColor: Colors.white,
+                      filled: true,
+                      labelText: 'Password'),
+                ),
+              ),
+              height10,
+              CustomButton(
+                onPressed: () {},
+                text: 'Log In',
+              )
             ],
           ),
         ),
