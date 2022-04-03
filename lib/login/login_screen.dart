@@ -41,8 +41,6 @@ class LoginScreen extends StatelessWidget {
               Padding(
                 padding: const EdgeInsets.only(left: 20, right: 20),
                 child: TextFormField(
-                  keyboardType: TextInputType.multiline,
-                  maxLines: null,
                   decoration: const InputDecoration(
                       border: OutlineInputBorder(),
                       fillColor: Colors.white,
