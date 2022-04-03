@@ -2,6 +2,9 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:seller/login/login_screen.dart';
 
+import '../add_product/add_product_screen.dart';
+import '../home/home_screen.dart';
+import '../search/search_screen.dart';
 import 'controller.dart';
 
 class BottomNavigation extends StatelessWidget {
@@ -10,9 +13,9 @@ class BottomNavigation extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     List<Widget> _widgetOption = [
-      // HomeScreen(),
-      // SeachScreen(),
-      // WishList(),
+      HomeScreen(),
+      SeachScreen(),
+      AddNewProduct(),
       // OrdersScreen(),
       // UserProfileScreen()
     ];
@@ -72,19 +75,19 @@ class BottomNavigation extends StatelessWidget {
                       label: ''),
                   BottomNavigationBarItem(
                       icon: Icon(
-                        Icons.bookmark_border,
-                        color: Colors.grey,
-                      ),
-                      activeIcon:
-                          Icon(Icons.bookmark_border, color: Colors.white),
-                      label: ''),
-                  BottomNavigationBarItem(
-                      icon: Icon(
                         Icons.shopping_cart,
                         color: Colors.grey,
                       ),
                       activeIcon:
                           Icon(Icons.shopping_cart, color: Colors.white),
+                      label: ''),
+                  BottomNavigationBarItem(
+                      icon: Icon(
+                        Icons.analytics_outlined,
+                        color: Colors.grey,
+                      ),
+                      activeIcon:
+                          Icon(Icons.analytics_outlined, color: Colors.white),
                       label: ''),
                   BottomNavigationBarItem(
                       icon: Icon(
