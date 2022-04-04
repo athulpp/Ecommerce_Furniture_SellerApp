@@ -1,0 +1,28 @@
+import 'package:flutter/material.dart';
+
+class ProductList extends StatelessWidget {
+  const ProductList({Key? key}) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return ListView.separated(
+      itemCount: 5,
+      separatorBuilder: (BuildContext context, int index) => const Divider(),
+      itemBuilder: (BuildContext context, index) {
+        return SingleChildScrollView(
+          child: ListTile(
+            leading: Image.asset('assests/images/icon (2).png'),
+            title: Text('product name'),
+            subtitle: Text('Product price'),
+            trailing: Wrap(
+              children: [
+                IconButton(onPressed: () {}, icon: Icon(Icons.delete)),
+                IconButton(onPressed: () {}, icon: Icon(Icons.update))
+              ],
+            ),
+          ),
+        );
+      },
+    );
+  }
+}
