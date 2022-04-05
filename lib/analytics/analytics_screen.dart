@@ -17,10 +17,15 @@ class AnalyticScreen extends StatelessWidget {
       length: 3,
       child: Scaffold(
         appBar: AppBar(
+          title: Text(
+            'Report',
+            style: TextStyle(color: Colors.black),
+          ),
+          centerTitle: true,
           backgroundColor: Colors.white,
           elevation: 0,
-          bottom: PreferredSize(
-            preferredSize: Size.zero,
+          bottom:const PreferredSize(
+            preferredSize: Size.fromHeight(18),
             child: TabBar(
               tabs: [
                 Tab(

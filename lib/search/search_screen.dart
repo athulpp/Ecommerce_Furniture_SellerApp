@@ -6,7 +6,15 @@ class SeachScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        backgroundColor: Color(0xffcdc1c1),
+        appBar: AppBar(
+          elevation: 0,
+          backgroundColor: Colors.white,
+          title: Text(
+            'Search',
+            style: TextStyle(color: Colors.black),
+          ),
+          centerTitle: true,
+        ),
         body: SingleChildScrollView(
           child: Column(
             children: [
@@ -17,11 +25,14 @@ class SeachScreen extends StatelessWidget {
                     filled: true,
                     labelText: 'Enter product name'),
               ),
-              Center(
-                  child: Text(
-                'No Furniture is found',
-                textAlign: TextAlign.center,
-              )),
+              Container(
+                height: 400,
+                child: Center(
+                    child: Text(
+                  'No Furniture is found',
+                  textAlign: TextAlign.center,
+                )),
+              ),
             ],
           ),
         ));

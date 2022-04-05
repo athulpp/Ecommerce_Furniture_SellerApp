@@ -6,6 +6,7 @@ import '../add_product/add_product_screen.dart';
 import '../analytics/analytics_screen.dart';
 import '../home/home_screen.dart';
 import '../search/search_screen.dart';
+import '../user_order/order_screen.dart';
 import 'controller.dart';
 
 class BottomNavigation extends StatelessWidget {
@@ -17,7 +18,8 @@ class BottomNavigation extends StatelessWidget {
       HomeScreen(),
       SeachScreen(),
       AddNewProduct(),
-     AnalyticScreen(),
+      AnalyticScreen(),
+      OrderScreen()
       // OrdersScreen(),
       // UserProfileScreen()
     ];
@@ -93,10 +95,11 @@ class BottomNavigation extends StatelessWidget {
                       label: ''),
                   BottomNavigationBarItem(
                       icon: Icon(
-                        Icons.person,
+                        Icons.receipt_outlined,
                         color: Colors.grey,
                       ),
-                      activeIcon: Icon(Icons.person, color: Colors.white),
+                      activeIcon:
+                          Icon(Icons.receipt_outlined, color: Colors.white),
                       label: ''),
                 ],
               );

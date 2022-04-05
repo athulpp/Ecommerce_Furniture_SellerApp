@@ -1,7 +1,10 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
+import 'package:seller/home/home_screen.dart';
 
 import '../const/constant.dart';
 import '../const/custom_button.dart';
+import '../control/bottom_navigation.dart';
 
 class LoginScreen extends StatelessWidget {
   const LoginScreen({Key? key}) : super(key: key);
@@ -50,7 +53,10 @@ class LoginScreen extends StatelessWidget {
               ),
               height10,
               CustomButton(
-                onPressed: () {},
+                onPressed: () {
+                  Get.to(() => BottomNavigation());
+                  // Get.to(() => HomeScreen());
+                },
                 text: 'Log In',
               )
             ],

@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
+import 'package:seller/home/product_detail.dart';
 
 class ProductList extends StatelessWidget {
   const ProductList({Key? key}) : super(key: key);
@@ -11,7 +13,11 @@ class ProductList extends StatelessWidget {
       itemBuilder: (BuildContext context, index) {
         return SingleChildScrollView(
           child: ListTile(
-            leading: Image.asset('assests/images/icon (2).png'),
+            onTap: () {
+              Get.to(() => const ProductDetailScreen());
+            },
+            leading: Image.network(
+                'https://m.media-amazon.com/images/I/71+xw4gRDDL._SX569_.jpg'),
             title: Text('product name'),
             subtitle: Text('Product price'),
             trailing: Wrap(
