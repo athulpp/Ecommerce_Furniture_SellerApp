@@ -8,29 +8,15 @@ class Controller extends GetxController with SingleGetTickerProviderMixin {
     update(["indexchange"]);
   }
 
-  late TabController? tabController;
+//   Future<String> loginUser({required String email, required String password}) {
+//     String res = 'Some Error';
 
-  List<Tab> myTabs = <Tab>[
-    Tab(
-      child: Text('day'),
-    ),
-    Tab(
-      child: Text('day'),
-    ),
-    Tab(
-      child: Text('day'),
-    )
-  ];
+//     try{
+// if (email.isNotEmpty|| password.isNotEmpty){
+  
+// }
+//     }catch{
 
-  @override
-  void onInit() {
-    tabController = TabController(length: 3, vsync: this);
-    super.onInit();
-  }
-
-  // @override
-  // void OnClose() {
-  //   tabController.dispose();
-  //   super.onClose();
-  // }
+//     }
+//   }
 }

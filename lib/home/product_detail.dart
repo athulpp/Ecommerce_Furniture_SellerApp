@@ -40,21 +40,21 @@ class ProductDetailScreen extends StatelessWidget {
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
                 Text("₹ 5000"),
-                Row(
-                  children: [
-                    IconButton(
-                      onPressed: () {},
-                      icon: Icon(Icons.add),
-                    ),
-                    Text('1'),
-                    IconButton(
-                      onPressed: () {},
-                      icon: Icon(Icons.remove),
-                    ),
-                    IconButton(
-                        onPressed: () {}, icon: Icon(Icons.list_alt_outlined))
-                  ],
-                ),
+                // Row(
+                //   children: [
+                //     IconButton(
+                //       onPressed: () {},
+                //       icon: Icon(Icons.add),
+                //     ),
+                //     Text('1'),
+                //     IconButton(
+                //       onPressed: () {},
+                //       icon: Icon(Icons.remove),
+                //     ),
+                //     IconButton(
+                //         onPressed: () {}, icon: Icon(Icons.list_alt_outlined))
+                //   ],
+                // ),
               ],
             ),
           ),

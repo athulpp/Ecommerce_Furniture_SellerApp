@@ -1,4 +1,6 @@
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
+import 'package:fluttertoast/fluttertoast.dart';
 import 'package:get/get.dart';
 import 'package:seller/home/home_screen.dart';
 
@@ -7,11 +9,15 @@ import '../const/custom_button.dart';
 import '../control/bottom_navigation.dart';
 
 class LoginScreen extends StatelessWidget {
-  const LoginScreen({Key? key}) : super(key: key);
-
+  LoginScreen({Key? key}) : super(key: key);
+  final auth = FirebaseAuth.instance;
+  TextEditingController _emailController = TextEditingController();
+  TextEditingController _passwordController = TextEditingController();
+  final _formKey = GlobalKey<FormState>();
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      resizeToAvoidBottomInset: false,
       body: SafeArea(
         child: Center(
           child: Column(
@@ -28,33 +34,76 @@ class LoginScreen extends StatelessWidget {
               height10,
               Text('Enter your email and password below'),
               height10,
-              Padding(
-                padding: const EdgeInsets.only(left: 20, right: 20),
-                child: TextFormField(
-                  keyboardType: TextInputType.multiline,
-                  maxLines: null,
-                  decoration: const InputDecoration(
-                      border: OutlineInputBorder(),
-                      fillColor: Colors.white,
-                      filled: true,
-                      labelText: 'Email address'),
-                ),
-              ),
-              height10,
-              Padding(
-                padding: const EdgeInsets.only(left: 20, right: 20),
-                child: TextFormField(
-                  decoration: const InputDecoration(
-                      border: OutlineInputBorder(),
-                      fillColor: Colors.white,
-                      filled: true,
-                      labelText: 'Password'),
+              Form(
+                key: _formKey,
+                child: Column(
+                  children: [
+                    Padding(
+                      padding: const EdgeInsets.only(left: 20, right: 20),
+                      child: TextFormField(
+                        onSaved: (value) {
+                          _emailController.text = value!;
+                        },
+                        validator: (value) {
+                          if (value!.isEmpty) {
+                            return ('Please Enter Email');
+                          }
+                          if (!RegExp("^[a-zA-Z0-9+_.-]+@[a-zA-Z0-9.-]+.[a-z]")
+                              .hasMatch(value)) {
+                            return ("please Enter valid email");
+                          }
+                          return null;
+                        },
+                        controller: _emailController,
+                        keyboardType: TextInputType.emailAddress,
+                        decoration: const InputDecoration(
+                            border: OutlineInputBorder(),
+                            fillColor: Colors.grey,
+                            filled: true,
+                            labelText: 'Email address',
+                            prefixIcon: Icon(
+                              Icons.email,
+                              color: Colors.white,
+                            )),
+                      ),
+                    ),
+                    height10,
+                    Padding(
+                      padding: const EdgeInsets.only(left: 20, right: 20),
+                      child: TextFormField(
+                          validator: ((value) {
+                            RegExp regex = new RegExp(r'^.{6,}$');
+                            if (value!.isEmpty) {
+                              return ("Password is required for login");
+                            }
+                            if (!regex.hasMatch(value)) {
+                              return ("Enter Valid Password(Min. 6 Character)");
+                            }
+                          }),
+                          onSaved: (value) {
+                            _passwordController.text = value!;
+                          },
+                          controller: _passwordController,
+                          obscureText: true,
+                          decoration: const InputDecoration(
+                            border: OutlineInputBorder(),
+                            fillColor: Colors.grey,
+                            filled: true,
+                            labelText: 'Password',
+                            prefixIcon: Icon(
+                              Icons.lock,
+                              color: Colors.white,
+                            ),
+                          )),
+                    ),
+                  ],
                 ),
               ),
               height10,
               CustomButton(
                 onPressed: () {
-                  Get.to(() => BottomNavigation());
+                  signIn(
+                      context, _emailController.text, _passwordController.text);
                   // Get.to(() => HomeScreen());
                 },
                 text: 'Log In',
@@ -64,5 +113,22 @@ class LoginScreen extends StatelessWidget {
         ),
       ),
     );
+  }
+
+  void signIn(context, String email, String password) async {
+    if (_formKey.currentState!.validate()) {
+      {
+        await auth
+            .signInWithEmailAndPassword(email: email, password: password)
+            .then((uid) => {
+                  Fluttertoast.showToast(msg: "Login Successful"),
+                  Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                          builder: (BuildContext context) =>
+                              BottomNavigation())),
+                });
+      }
+    }
   }
 }
