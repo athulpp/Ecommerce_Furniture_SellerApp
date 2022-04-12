@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:seller/add_product/new_product.dart';
+import 'package:seller/home/all_products.dart';
 import 'package:seller/login/login_screen.dart';
 
 import '../add_product/add_product_screen.dart';
@@ -9,15 +11,23 @@ import '../search/search_screen.dart';
 import '../user_order/order_screen.dart';
 import 'controller.dart';
 
-class BottomNavigation extends StatelessWidget {
-  const BottomNavigation({Key? key}) : super(key: key);
+final data_control = Get.put(Controller());
 
+class BottomNavigation extends StatelessWidget {
+  BottomNavigation({Key? key}) : super(key: key);
+  List<String> headings = [
+    'Product List',
+    'Add Product',
+    'Report',
+    'User Order Screen'
+  ];
   @override
   Widget build(BuildContext context) {
     List<Widget> _widgetOption = [
-      HomeScreen(),
-      SeachScreen(),
-      AddNewProduct(),
+      AllProductList(),
+      // SeachScreen(),
+      // AddNewProduct(),
+      NewProductScreen(),
       AnalyticScreen(),
       OrderScreen()
       // OrdersScreen(),
@@ -26,13 +36,24 @@ class BottomNavigation extends StatelessWidget {
     return SafeArea(
         child: Scaffold(
       appBar: AppBar(
+        leading: IconButton(
+            onPressed: () {
+              Get.to(() => SeachScreen());
+            },
+            icon: Icon(Icons.search_outlined)),
         backgroundColor: Colors.black,
-        title: Text('furniture'),
+        title: GetBuilder<Controller>(
+          id: 'indexchange',
+          builder: (controller) {
+            return Text(headings[data_control.selectedIndex]);
+          },
+        ),
+        centerTitle: true,
         automaticallyImplyLeading: false,
         actions: [
           IconButton(
               onPressed: () {
-                Get.to(LoginScreen());
+                data_control.logOut(context);
               },
               icon: Icon(Icons.login_sharp))
         ],
@@ -67,16 +88,16 @@ class BottomNavigation extends StatelessWidget {
                       ),
                       activeIcon: Icon(Icons.home, color: Colors.white),
                       label: ''),
-                  BottomNavigationBarItem(
-                      icon: Icon(
-                        Icons.search,
-                        color: Colors.grey,
-                      ),
-                      activeIcon: Icon(
-                        Icons.search,
-                        color: Colors.white,
-                      ),
-                      label: ''),
+                  // BottomNavigationBarItem(
+                  //     icon: Icon(
+                  //       Icons.search,
+                  //       color: Colors.grey,
+                  //     ),
+                  //     activeIcon: Icon(
+                  //       Icons.search,
+                  //       color: Colors.white,
+                  //     ),
+                  //     label: ''),
                   BottomNavigationBarItem(
                       icon: Icon(
                         Icons.shopping_cart,

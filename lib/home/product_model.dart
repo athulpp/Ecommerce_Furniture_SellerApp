@@ -1,5 +1,5 @@
 class ProductModel {
-  final String productId;
+   String productId;
   final String productname;
   final String productprice;
   final int productQuantity;

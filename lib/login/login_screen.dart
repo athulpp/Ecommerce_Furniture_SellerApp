@@ -1,5 +1,6 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_secure_storage/flutter_secure_storage.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 import 'package:get/get.dart';
 import 'package:seller/home/home_screen.dart';
@@ -14,6 +15,7 @@ class LoginScreen extends StatelessWidget {
   TextEditingController _emailController = TextEditingController();
   TextEditingController _passwordController = TextEditingController();
   final _formKey = GlobalKey<FormState>();
+  final storage = new FlutterSecureStorage();
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -57,13 +59,13 @@ class LoginScreen extends StatelessWidget {
                         controller: _emailController,
                         keyboardType: TextInputType.emailAddress,
                         decoration: const InputDecoration(
-                            border: OutlineInputBorder(),
-                            fillColor: Colors.grey,
+                            // border: OutlineInputBorder(),
+                            // fillColor: Colors.grey,
                             filled: true,
                             labelText: 'Email address',
                             prefixIcon: Icon(
                               Icons.email,
-                              color: Colors.white,
+                              color: Colors.black,
                             )),
                       ),
                     ),
@@ -86,13 +88,13 @@ class LoginScreen extends StatelessWidget {
                           controller: _passwordController,
                           obscureText: true,
                           decoration: const InputDecoration(
-                            border: OutlineInputBorder(),
-                            fillColor: Colors.grey,
+                            // border: OutlineInputBorder(),
+                            // fillColor: Colors.grey,
                             filled: true,
                             labelText: 'Password',
                             prefixIcon: Icon(
                               Icons.lock,
-                              color: Colors.white,
+                              color: Colors.black,
                             ),
                           )),
                     ),
@@ -118,16 +120,19 @@ class LoginScreen extends StatelessWidget {
   void signIn(context, String email, String password) async {
     if (_formKey.currentState!.validate()) {
       {
-        await auth
-            .signInWithEmailAndPassword(email: email, password: password)
-            .then((uid) => {
-                  Fluttertoast.showToast(msg: "Login Successful"),
-                  Navigator.push(
-                      context,
-                      MaterialPageRoute(
-                          builder: (BuildContext context) =>
-                              BottomNavigation())),
-                });
+        try {
+          UserCredential userCredential = await auth.signInWithEmailAndPassword(
+              email: email, password: password);
+          print(userCredential.user?.uid);
+
+          await storage.write(key: "uid", value: userCredential.user?.uid);
+
+          Fluttertoast.showToast(msg: "Login Successful");
+          Navigator.push(context,
+              MaterialPageRoute(builder: (context) => BottomNavigation()));
+        } catch (e) {
+          return null;
+        }
       }
     }
   }

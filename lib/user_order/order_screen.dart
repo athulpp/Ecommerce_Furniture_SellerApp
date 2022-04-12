@@ -9,16 +9,7 @@ class OrderScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: Colors.white,
-      appBar: AppBar(
-        elevation: 0,
-        backgroundColor: Colors.white,
-        title: Text(
-          'User orders record',
-          style: TextStyle(color: Colors.black),
-        ),
-        centerTitle: true,
-      ),
-      body:OrderListView() ,
+      body: OrderListView(),
     );
   }
 }
