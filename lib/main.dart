@@ -4,16 +4,18 @@ import 'package:flutter_secure_storage/flutter_secure_storage.dart';
 import 'package:get/get.dart';
 import 'package:seller/control/bottom_navigation.dart';
 // import 'package:seller/control/bottom_navigation.dart';
-import 'package:seller/home/home_screen.dart';
+// import 'package:seller/home/home_screen.dart';
 
 import 'package:seller/login/login_screen.dart';
+import 'package:seller/theme/theme.dart';
+import 'package:seller/theme/theme_manger.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await Firebase.initializeApp();
   runApp(MyApp());
 }
-
+ThemeManger _themeManger=ThemeManger();
 class MyApp extends StatelessWidget {
   MyApp({Key? key}) : super(key: key);
   final storage = new FlutterSecureStorage();
@@ -28,6 +30,10 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return GetMaterialApp(
+      // theme: Theme.of(context).f,
+      theme: lightTheme,
+      darkTheme: darkTheme,
+      themeMode: _themeManger.themeMode,
       debugShowCheckedModeBanner: false,
       home: FutureBuilder(
         future: checkLoginStatus(),

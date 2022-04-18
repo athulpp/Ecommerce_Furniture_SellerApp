@@ -53,7 +53,27 @@ class BottomNavigation extends StatelessWidget {
         actions: [
           IconButton(
               onPressed: () {
-                data_control.logOut(context);
+                // data_control.logOut(context);
+                Get.defaultDialog(
+                    buttonColor: Colors.white,
+                    barrierDismissible: true,
+                    title: 'Logout',
+                    titleStyle: TextStyle(fontSize: 18),
+                    middleText: "Do you Want to Logout ?",
+                    middleTextStyle: const TextStyle(
+                      fontSize: 16,
+                    ),
+                    radius: 20,
+                    textCancel: 'No',
+                    cancelTextColor: Colors.green,
+                    textConfirm: 'Yes',
+                    confirmTextColor: Colors.red,
+                    onConfirm: () {
+                      data_control.logOut(context);
+                    }
+
+                    // confirm: data_control.logOut(context),
+                    );
               },
               icon: Icon(Icons.login_sharp))
         ],

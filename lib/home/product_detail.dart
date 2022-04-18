@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 
 class ProductDetailScreen extends StatelessWidget {
   const ProductDetailScreen({Key? key}) : super(key: key);
-
+// my old design is this one 
   @override
   Widget build(BuildContext context) {
     return Scaffold(

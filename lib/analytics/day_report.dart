@@ -5,14 +5,26 @@ class DayReport extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return ListView.separated(
-      separatorBuilder: (BuildContext context, int index) => const Divider(),
+    return ListView.builder(
+      // separatorBuilder: (BuildContext context, int index) => const Divider(
+      //   thickness: 5,
+      // ),
       itemCount: 15,
       itemBuilder: (BuildContext context, index) {
-        return ListTile(
-          leading: Text('Product name'),
-          title: Text('No.of product sales '),
-          trailing: Text('total money earned'),
+        return Container(
+          height: 100,
+          child: Padding(
+            padding: EdgeInsets.only(left: 10, right: 10),
+            child: Card(
+              color: Colors.grey.shade200,
+              child: ListTile(
+                leading: Text('Product name'),
+                
+                title: Text('No.of product sales '),
+                trailing: Text('total money earned'),
+              ),
+            ),
+          ),
         );
       },
     );
