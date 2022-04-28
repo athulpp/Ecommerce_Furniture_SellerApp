@@ -3,13 +3,12 @@ import 'dart:typed_data';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_storage/firebase_storage.dart';
-import 'package:flutter/material.dart';
+
 import 'package:flutter_secure_storage/flutter_secure_storage.dart';
 import 'package:get/get.dart';
 import 'package:seller/add_product/new_product.dart';
 import 'package:seller/login/login_screen.dart';
 import 'package:seller/model/product_model.dart';
-import 'package:uuid/uuid.dart';
 
 Controller controller = Get.find();
 
@@ -19,6 +18,10 @@ class Controller extends GetxController {
     selectedIndex = index;
     update(["indexchange"]);
   }
+
+  Uint8List? image;
+
+  Uint8List? upimage;
 
   static String products = 'a';
   // static String productid = '';

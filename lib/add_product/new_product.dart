@@ -3,14 +3,15 @@ import 'dart:typed_data';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_storage/firebase_storage.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:fluttertoast/fluttertoast.dart';
-import 'package:get/get_connect/http/src/utils/utils.dart';
+import 'package:get/get.dart';
 
 import 'package:image_picker/image_picker.dart';
-import 'package:rflutter_alert/rflutter_alert.dart';
+
 import 'package:seller/control/bottom_navigation.dart';
 import 'package:seller/control/controller.dart';
-import 'package:seller/model/product_model.dart';
+
 import 'package:uuid/uuid.dart';
 
 var uuid = Uuid();
@@ -37,35 +38,61 @@ class NewProductScreen extends StatelessWidget {
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               SizedBox(
-                height: 100,
-                child: Card(
-                  margin: EdgeInsets.zero,
-                  color: Colors.black,
-                  child: Row(
-                    children: [
-                      IconButton(
-                        onPressed: () async {
-                          // if (imag!.isEmpty) {
-                          //   return;
-                          // }
-                          imag = await pickImage();
-                        },
-                        icon: const Icon(
-                          Icons.add_circle,
-                          color: Colors.white,
+                  height: 100,
+                  child: Card(
+                      margin: EdgeInsets.zero,
+                      color: Colors.black,
+                      child: Row(children: [
+                        IconButton(
+                          onPressed: () async {
+                            // if (imag!.isEmpty) {
+                            //   return;
+                            // }
+                            await pickImage();
+                            // controller.image = imag;
+
+                            // controller.update();
+                            print(controller.image);
+                            // print(imag);
+                          },
+                          icon: const Icon(
+                            Icons.add_circle,
+                            color: Colors.white,
+                          ),
                         ),
-                      ),
-                      const Text(
-                        'Add Image',
-                        style: TextStyle(
-                            fontSize: 16,
-                            fontWeight: FontWeight.bold,
-                            color: Colors.white),
-                      )
-                    ],
-                  ),
-                ),
-              ),
+                        Row(
+                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                          children: [
+                            const Text(
+                              'Add Image',
+                              style: TextStyle(
+                                  fontSize: 16,
+                                  fontWeight: FontWeight.bold,
+                                  color: Colors.white),
+                            ),
+                            SizedBox(
+                              width: 90,
+                            ),
+                            GetBuilder<Controller>(
+                                // id: 'product',
+                                builder: (controller) {
+                              return Container(
+                                width: 150,
+                                height: 150,
+                                decoration: BoxDecoration(
+                                    image: controller.image != null
+                                        ? DecorationImage(
+                                            image:
+                                                MemoryImage(controller.image!))
+                                        : DecorationImage(
+                                            image: NetworkImage(
+                                                'https://upload.wikimedia.org/wikipedia/commons/thumb/6/65/No-Image-Placeholder.svg/1665px-No-Image-Placeholder.svg.png'))),
+                              );
+                            })
+                          ],
+                        )
+                      ]))),
+
               const SizedBox(
                 height: 20,
               ),
@@ -86,8 +113,12 @@ class NewProductScreen extends StatelessWidget {
                           _productName.text = value!;
                         },
                         validator: (value) {
+                          RegExp regex = new RegExp(r'^.{4,}$');
                           if (value!.isEmpty) {
                             return "Please Enter Product Name";
+                          }
+                          if (!regex.hasMatch(value)) {
+                            return ("Minum 4 lettters required");
                           }
                         },
                         decoration: InputDecoration(hintText: 'Product Name'),
@@ -100,8 +131,12 @@ class NewProductScreen extends StatelessWidget {
                           _productDescripiton.text = value!;
                         },
                         validator: (value) {
+                          RegExp regex = new RegExp(r'^.{20,}$');
                           if (value!.isEmpty) {
                             return 'Product Descipition required';
+                          }
+                          if (!regex.hasMatch(value)) {
+                            return ("Minum 20 lettters required");
                           }
                         },
                         controller: _productDescripiton,
@@ -112,6 +147,7 @@ class NewProductScreen extends StatelessWidget {
                         height: 10,
                       ),
                       TextFormField(
+                        keyboardType: TextInputType.number,
                         onSaved: (value) {
                           _productprice.text = value!;
                         },
@@ -127,12 +163,17 @@ class NewProductScreen extends StatelessWidget {
                         height: 10,
                       ),
                       TextFormField(
+                        keyboardType: TextInputType.number,
                         onSaved: (value) {
                           _prodcutQuantity.text = value!;
                         },
                         validator: (value) {
+                          RegExp regex = new RegExp(r'^.{1,}$');
                           if (value!.isEmpty) {
                             return 'Product Quantity is Required';
+                          }
+                          if (!regex.hasMatch(value)) {
+                            return ("Minimum 1 product required)");
                           }
                         },
                         controller: _prodcutQuantity,
@@ -163,6 +204,7 @@ class NewProductScreen extends StatelessWidget {
                               builder: (context) => BottomNavigation()))
                           .whenComplete;
                       Fluttertoast.showToast(msg: "Product Added Sucessfully!");
+
                       // var alertStyle = AlertStyle(
                       //   animationType: AnimationType.fromTop,
                       //   isCloseButton: false,
@@ -210,7 +252,12 @@ class NewProductScreen extends StatelessWidget {
                     ),
                   ),
                 ),
-              )
+              ),
+              // Obx(
+              //   () => imag != null
+              //       ? Image.memory(imag!, width: 100, height: 100)
+              //       : CircularProgressIndicator(),
+              // ),
             ],
           ),
         ),
@@ -243,14 +290,17 @@ class NewProductScreen extends StatelessWidget {
 
     XFile? file = await imagePicker.pickImage(source: ImageSource.gallery);
     if (file != null) {
-      return await file.readAsBytes();
+      controller.image = await file.readAsBytes();
+      controller.update();
+      // return await file.readAsBytes();
     }
     print('No image se');
   }
 
   Future<String> selectImage() async {
     // Uint8List im = await pickImage();
-    String _image = await controller.uploadImageToStorage('prod', imag!);
+    String _image =
+        await controller.uploadImageToStorage('prod', controller.image!);
     return _image;
   }
 

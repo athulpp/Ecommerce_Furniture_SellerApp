@@ -156,13 +156,14 @@ class AllProductList extends StatelessWidget {
                                           textConfirm: 'Yes',
                                           confirmTextColor: Colors.red,
                                           onConfirm: () {
+                                            Navigator.pop(context);
                                             Get.to(() => EditProduct(
                                                   productId:
                                                       documentSnapshot.id,
                                                   productName: documentSnapshot[
                                                       'productname'],
                                                   productDesc: documentSnapshot[
-                                                      'productprice'],
+                                                      'productdes'],
                                                   productPrice:
                                                       documentSnapshot[
                                                           'productprice'],
@@ -191,7 +192,7 @@ class AllProductList extends StatelessWidget {
                                       color: Colors.white),
                                   child: TextButton(
                                     style: ButtonStyle(
-                                      elevation: MaterialStateProperty.all(20),
+                                      // elevation: MaterialStateProperty.all(20),
                                       backgroundColor:
                                           MaterialStateProperty.all(Colors.red),
                                       // padding: MaterialStateProperty.all(
@@ -210,18 +211,19 @@ class AllProductList extends StatelessWidget {
                                           middleTextStyle: const TextStyle(
                                             fontSize: 16,
                                           ),
-                                          radius: 20,
+                                          radius: 10,
                                           textCancel: 'No',
                                           cancelTextColor: Colors.green,
                                           textConfirm: 'Yes',
                                           confirmTextColor: Colors.red,
                                           onConfirm: () {
+                                            Navigator.pop(context);
                                             controller.deleteProduct(
+                                                productId: documentSnapshot.id,
                                                 productName: documentSnapshot[
                                                     'productname'],
                                                 productDes: documentSnapshot[
                                                     'productdes'],
-                                                productId: documentSnapshot.id,
                                                 productPrice: documentSnapshot[
                                                     'productprice'],
                                                 productQuantity:

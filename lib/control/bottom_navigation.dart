@@ -2,11 +2,10 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:seller/add_product/new_product.dart';
 import 'package:seller/home/all_products.dart';
-import 'package:seller/login/login_screen.dart';
 
-import '../add_product/add_product_screen.dart';
+
 import '../analytics/analytics_screen.dart';
-import '../home/home_screen.dart';
+
 import '../search/search_screen.dart';
 import '../user_order/order_screen.dart';
 import 'controller.dart';

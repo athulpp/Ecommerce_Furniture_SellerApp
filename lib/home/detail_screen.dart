@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:seller/model/product_model.dart';
 
 class DetailScreen extends StatelessWidget {
   DetailScreen(
@@ -20,7 +19,7 @@ class DetailScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Colors.grey.shade200,
+      backgroundColor: Colors.brown.shade200,
       appBar: AppBar(
         backgroundColor: Colors.brown.shade200,
         title: Text(
@@ -29,11 +28,14 @@ class DetailScreen extends StatelessWidget {
         centerTitle: true,
         elevation: 0,
       ),
-      body: SafeArea(
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            Container(
+      body: Column(
+        // scrollDirection: Axis.vertical,
+        // shrinkWrap: true,
+        // crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          Padding(
+            padding: const EdgeInsets.all(10.0),
+            child: Container(
               width: double.infinity,
               height: MediaQuery.of(context).size.height * 0.4,
               decoration: BoxDecoration(
@@ -45,59 +47,70 @@ class DetailScreen extends StatelessWidget {
               ),
               child: Image.network(productImage),
             ),
-            const SizedBox(
-              height: 20,
-            ),
-            Padding(
-              padding: const EdgeInsets.all(8.0),
-              child: Container(
-                width: double.infinity,
-                height: MediaQuery.of(context).size.height * 0.4,
-                decoration: BoxDecoration(
-                    color: Colors.grey.shade300,
-                    borderRadius: BorderRadius.only(
-                        topLeft: Radius.circular(20),
-                        topRight: Radius.circular(20))),
-                child: Padding(
-                  padding: const EdgeInsets.only(left: 10, right: 20),
-                  child: Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      Text(
-                        productName,style: TextStyle(
-                                fontSize: 28, fontWeight: FontWeight.bold),
-                    
-                      ),
-                      const SizedBox(
-                        height: 20,
-                      ),
-                      Text(
-                        productDesc,
-                        style: const TextStyle(fontSize: 20),
-                      ),
-                      SizedBox(
-                        height: 20,
-                      ),
-                      Text(
-                        "productPrice: ₹$productPrice",
-                        style: TextStyle(
-                            fontSize: 20, fontWeight: FontWeight.bold),
-                      ),
-                      SizedBox(
-                        height: 30,
-                      ),
-                      Text(
-                        "productQuantity: $productQuantity",
-                        style: TextStyle(
-                            fontSize: 20, fontWeight: FontWeight.bold),
-                      )
-                    ],
+          ),
+          const SizedBox(
+            height: 20,
+          ),
+          Container(
+            width: double.infinity,
+            height: MediaQuery.of(context).size.height * 0.445,
+            decoration: BoxDecoration(
+                color: Colors.grey.shade300,
+                borderRadius: BorderRadius.only(
+                    topLeft: Radius.circular(20),
+                    topRight: Radius.circular(20))),
+            child: Padding(
+              padding: const EdgeInsets.only(left: 10, right: 20),
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.center,
+                children: [
+                  Text(
+                    productName,
+                    overflow: TextOverflow.ellipsis,
+                    style: TextStyle(fontSize: 28, fontWeight: FontWeight.bold),
                   ),
-                ),
+                  const SizedBox(
+                    height: 20,
+                  ),
+                  Text(
+                    productDesc,
+                    style: const TextStyle(fontSize: 16),
+                  ),
+                  SizedBox(
+                    height: 30,
+                  ),
+                  Container(
+                    decoration: BoxDecoration(
+                        color: Colors.brown.shade100,
+                        borderRadius: BorderRadius.all(Radius.circular(20))),
+                    width: 300,
+                    height: 100,
+                    child: Row(
+                      children: [
+                        SizedBox(
+                          width: 30,
+                        ),
+                        Text(
+                          "Price: ₹$productPrice",
+                          style: TextStyle(
+                              fontSize: 20, fontWeight: FontWeight.bold),
+                        ),
+                        SizedBox(
+                          width: 10,
+                        ),
+                        Text(
+                          "Quantity: $productQuantity",
+                          style: TextStyle(
+                              fontSize: 20, fontWeight: FontWeight.bold),
+                        )
+                      ],
+                    ),
+                  ),
+                ],
               ),
             ),
-          ],
-        ),
+          ),
+        ],
       ),
     );
   }

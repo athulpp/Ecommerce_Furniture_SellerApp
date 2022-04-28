@@ -4,6 +4,7 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_storage/firebase_storage.dart';
 import 'package:flutter/material.dart';
 import 'package:fluttertoast/fluttertoast.dart';
+import 'package:get/get.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:seller/add_product/new_product.dart';
 import 'package:seller/control/bottom_navigation.dart';
@@ -81,7 +82,7 @@ class EditProduct extends StatelessWidget {
                             // if (imag!.isEmpty) {
                             //   return;
                             // }
-                            imag = await pickImage();
+                            await pickImage();
                           },
                           icon: const Icon(
                             Icons.add_circle,
@@ -94,7 +95,21 @@ class EditProduct extends StatelessWidget {
                               fontSize: 16,
                               fontWeight: FontWeight.bold,
                               color: Colors.white),
-                        )
+                        ),
+                        GetBuilder<Controller>(
+                            // id: 'product',
+                            builder: (controller) {
+                          return Container(
+                            width: 150,
+                            height: 150,
+                            decoration: BoxDecoration(
+                                image: controller.upimage != null
+                                    ? DecorationImage(
+                                        image: MemoryImage(controller.upimage!))
+                                    : DecorationImage(
+                                        image: NetworkImage(productImage))),
+                          );
+                        })
                       ],
                     ),
                   ),
@@ -250,14 +265,16 @@ class EditProduct extends StatelessWidget {
 
     XFile? file = await imagePicker.pickImage(source: ImageSource.gallery);
     if (file != null) {
-      return await file.readAsBytes();
+      controller.upimage = await file.readAsBytes();
+      controller.update();
     }
     print('No image se');
   }
 
   Future<String> selectImage() async {
     // Uint8List im = await pickImage();
-    String _image = await controller.updateImageToStorage('prod', imag!);
+    String _image =
+        await controller.updateImageToStorage('prod', controller.upimage!);
     return _image;
   }
 }

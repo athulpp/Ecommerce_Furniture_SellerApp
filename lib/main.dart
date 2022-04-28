@@ -15,7 +15,9 @@ void main() async {
   await Firebase.initializeApp();
   runApp(MyApp());
 }
-ThemeManger _themeManger=ThemeManger();
+
+ThemeManger _themeManger = ThemeManger();
+
 class MyApp extends StatelessWidget {
   MyApp({Key? key}) : super(key: key);
   final storage = new FlutterSecureStorage();
@@ -30,11 +32,9 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return GetMaterialApp(
-      // theme: Theme.of(context).f,
-      theme: lightTheme,
-      darkTheme: darkTheme,
-      themeMode: _themeManger.themeMode,
       debugShowCheckedModeBanner: false,
+      // theme: Theme.of(context).f,
+      theme: ThemeData(primarySwatch: Colors.brown),
       home: FutureBuilder(
         future: checkLoginStatus(),
         builder: (BuildContext context, AsyncSnapshot<bool> snapshot) {

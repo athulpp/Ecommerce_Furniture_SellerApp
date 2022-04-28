@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:get/get.dart';
+
 import 'package:seller/analytics/month_report.dart';
 import 'package:seller/analytics/week_report.dart';
-import 'package:seller/control/controller.dart';
+
 
 import 'day_report.dart';
 
