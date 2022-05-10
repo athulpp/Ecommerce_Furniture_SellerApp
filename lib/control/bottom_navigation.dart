@@ -27,7 +27,7 @@ class BottomNavigation extends StatelessWidget {
       // SeachScreen(),
       // AddNewProduct(),
       NewProductScreen(),
-      AnalyticScreen(),
+      // AnalyticScreen(),
       OrderScreen()
       // OrdersScreen(),
       // UserProfileScreen()
@@ -125,14 +125,14 @@ class BottomNavigation extends StatelessWidget {
                       activeIcon:
                           Icon(Icons.shopping_cart, color: Colors.white),
                       label: ''),
-                  BottomNavigationBarItem(
-                      icon: Icon(
-                        Icons.analytics_outlined,
-                        color: Colors.grey,
-                      ),
-                      activeIcon:
-                          Icon(Icons.analytics_outlined, color: Colors.white),
-                      label: ''),
+                  // BottomNavigationBarItem(
+                  //     icon: Icon(
+                  //       Icons.analytics_outlined,
+                  //       color: Colors.grey,
+                  //     ),
+                  //     activeIcon:
+                  //         Icon(Icons.analytics_outlined, color: Colors.white),
+                  //     label: ''),
                   BottomNavigationBarItem(
                       icon: Icon(
                         Icons.receipt_outlined,

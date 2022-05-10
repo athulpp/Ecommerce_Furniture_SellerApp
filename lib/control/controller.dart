@@ -89,6 +89,7 @@ class Controller extends GetxController {
       required String productDes,
       required String productQuantity,
       required String productPrice,
+      // required String productCategory,
       required String file}) async {
     final fireStore = FirebaseFirestore.instance;
     // .collection(
@@ -111,6 +112,7 @@ class Controller extends GetxController {
           ProductDescripition: productDes,
           prdouctPrice: productPrice,
           productQuantity: productQuantity,
+          // productCategory: productCategory,
           productImage: file);
 
       fireStore.collection('products').doc(productId).set(product.toJson());
@@ -129,6 +131,7 @@ class Controller extends GetxController {
       required String productName,
       required String productDes,
       required String productQuantity,
+      // required String productCategory,
       required String productPrice,
       required String file}) async {
     Product product = Product(
@@ -137,6 +140,7 @@ class Controller extends GetxController {
         ProductDescripition: productDes,
         prdouctPrice: productPrice,
         productQuantity: productQuantity,
+        // productCategory: productCategory,
         productImage: file);
     final fireStore = FirebaseFirestore.instance;
     fireStore.collection('products').doc(productId).delete();
@@ -147,6 +151,7 @@ class Controller extends GetxController {
       required String productName,
       required String productDes,
       required String productQuantity,
+      // required String productCategory,
       required String productPrice,
       required String file}) async {
     Product product = Product(
@@ -155,6 +160,7 @@ class Controller extends GetxController {
         ProductDescripition: productDes,
         prdouctPrice: productPrice,
         productQuantity: productQuantity,
+        // productCategory:productCategory ,
         productImage: file);
     final fireStore = FirebaseFirestore.instance;
     fireStore.collection('products').doc(productId).update(product.toJson());
@@ -163,6 +169,8 @@ class Controller extends GetxController {
   final FirebaseStorage _storage = FirebaseStorage.instance;
   final FirebaseAuth _auth = FirebaseAuth.instance;
   final photoid = uuid.v1();
+
+  
   Future<String> uploadImageToStorage(String childName, Uint8List file) async {
     Reference ref = _storage.ref().child(childName).child(photoid);
 

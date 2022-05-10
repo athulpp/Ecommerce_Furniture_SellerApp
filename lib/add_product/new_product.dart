@@ -3,7 +3,7 @@ import 'dart:typed_data';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_storage/firebase_storage.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
+// import 'package:flutter/services.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 import 'package:get/get.dart';
 
@@ -22,6 +22,7 @@ class NewProductScreen extends StatelessWidget {
   TextEditingController _productDescripiton = TextEditingController();
   TextEditingController _prodcutQuantity = TextEditingController();
   TextEditingController _productprice = TextEditingController();
+  // TextEditingController _productCategory = TextEditingController();
   final _formKey = GlobalKey<FormState>();
   final FirebaseStorage _storage = FirebaseStorage.instance;
   final FirebaseAuth _auth = FirebaseAuth.instance;
@@ -178,8 +179,25 @@ class NewProductScreen extends StatelessWidget {
                         },
                         controller: _prodcutQuantity,
                         decoration:
-                            InputDecoration(hintText: 'Product Quantity'),
+                            InputDecoration(hintText: 'Product Quantiy'),
                       ),
+                      // TextFormField(
+                      //   onSaved: (value) {
+                      //     _productCategory.text = value!;
+                      //   },
+                      //   validator: (value) {
+                      //     RegExp regex = new RegExp(r'^.{4,}$');
+                      //     if (value!.isEmpty) {
+                      //       return 'Product Category is Required';
+                      //     }
+                      //     if (!regex.hasMatch(value)) {
+                      //       return ("Minimum 4 letters  required)");
+                      //     }
+                      //   },
+                      //   controller: _prodcutQuantity,
+                      //   decoration:
+                      //       InputDecoration(hintText: 'Product Category'),
+                      // ),
                     ],
                   )),
               SizedBox(
@@ -198,9 +216,11 @@ class NewProductScreen extends StatelessWidget {
                           productDes: _productDescripiton.text,
                           productQuantity: _prodcutQuantity.text,
                           productPrice: _productprice.text,
+                          // productCategory: _productCategory.text,
                           file: imgUrl);
+                          
                       Navigator.of(context)
-                          .push(MaterialPageRoute(
+                          .pushReplacement(MaterialPageRoute(
                               builder: (context) => BottomNavigation()))
                           .whenComplete;
                       Fluttertoast.showToast(msg: "Product Added Sucessfully!");
@@ -292,6 +312,7 @@ class NewProductScreen extends StatelessWidget {
     if (file != null) {
       controller.image = await file.readAsBytes();
       controller.update();
+    
       // return await file.readAsBytes();
     }
     print('No image se');

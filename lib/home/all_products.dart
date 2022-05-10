@@ -170,6 +170,9 @@ class AllProductList extends StatelessWidget {
                                                   productQuantity:
                                                       documentSnapshot[
                                                           'productquantity'],
+                                                  // productCategory:
+                                                  //     documentSnapshot[
+                                                  //         'productCategory'],
                                                   productImage:
                                                       documentSnapshot[
                                                           'productimage'],
@@ -229,6 +232,9 @@ class AllProductList extends StatelessWidget {
                                                 productQuantity:
                                                     documentSnapshot[
                                                         'productquantity'],
+                                                // productCategory:
+                                                //     documentSnapshot[
+                                                //         'productcategory'],
                                                 file: documentSnapshot[
                                                     'productimage']);
                                             Get.to(() => BottomNavigation());

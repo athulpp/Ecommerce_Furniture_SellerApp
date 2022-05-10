@@ -1,14 +1,17 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 
 class OrderListView extends StatelessWidget {
-  const OrderListView({Key? key}) : super(key: key);
-
+  OrderListView({Key? key}) : super(key: key);
+  final _orderStream = FirebaseFirestore.instance
+      .collection('OrderCollection')
+      .doc(FirebaseAuth.instance.currentUser!.uid)
+      .collection('order')
+      .snapshots();
   @override
   Widget build(BuildContext context) {
     return ListView.builder(
-      // separatorBuilder: (BuildContext context, int index) => const Divider(
-      //   thickness: 2,
-      // ),
       itemCount: 10,
       itemBuilder: (context, index) {
         return Padding(

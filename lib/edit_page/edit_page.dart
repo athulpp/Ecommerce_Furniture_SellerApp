@@ -18,6 +18,7 @@ class EditProduct extends StatelessWidget {
       required this.productDesc,
       required this.productPrice,
       required this.productQuantity,
+      // required this.productCategory,
       required this.productImage})
       : super(key: key);
   final productId;
@@ -25,11 +26,13 @@ class EditProduct extends StatelessWidget {
   String productDesc;
   String productPrice;
   String productQuantity;
+  // String productCategory;
   String productImage;
   TextEditingController _productName = TextEditingController();
   TextEditingController _productDescripiton = TextEditingController();
   TextEditingController _prodcutQuantity = TextEditingController();
   TextEditingController _productprice = TextEditingController();
+  // TextEditingController _productCategory = TextEditingController();
   final _formKey = GlobalKey<FormState>();
   final FirebaseStorage _storage = FirebaseStorage.instance;
   final FirebaseAuth _auth = FirebaseAuth.instance;
@@ -44,6 +47,7 @@ class EditProduct extends StatelessWidget {
     _productDescripiton.text = productDesc;
     _productprice.text = productPrice;
     _prodcutQuantity.text = productQuantity;
+    // _productCategory.text = productCategory;
   }
 
   @override
@@ -188,6 +192,19 @@ class EditProduct extends StatelessWidget {
                           decoration:
                               InputDecoration(hintText: 'Product Quantity'),
                         ),
+                        //  TextFormField(
+                        //   onSaved: (value) {
+                        //     _productCategory.text = value!;
+                        //   },
+                        //   validator: (value) {
+                        //     if (value!.isEmpty) {
+                        //       return 'Product Quantity is Required';
+                        //     }
+                        //   },
+                        //   controller: _productCategory,
+                        //   decoration:
+                        //       InputDecoration(hintText: 'Product Quantity'),
+                        // ),
                       ],
                     )),
                 SizedBox(
@@ -205,6 +222,7 @@ class EditProduct extends StatelessWidget {
                             productName: _productName.text,
                             productDes: _productDescripiton.text,
                             productQuantity: _prodcutQuantity.text,
+                            // productCategory: _productCategory.text,
                             productPrice: _productprice.text,
                             file: imgUrl);
                         Navigator.of(context)
