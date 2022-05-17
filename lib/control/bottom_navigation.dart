@@ -3,7 +3,6 @@ import 'package:get/get.dart';
 import 'package:seller/add_product/new_product.dart';
 import 'package:seller/home/all_products.dart';
 
-
 import '../analytics/analytics_screen.dart';
 
 import '../search/search_screen.dart';
@@ -13,13 +12,13 @@ import 'controller.dart';
 final data_control = Get.put(Controller());
 
 class BottomNavigation extends StatelessWidget {
-  BottomNavigation({Key? key}) : super(key: key);
+  BottomNavigation({Key? key, this.currentIndex}) : super(key: key);
   List<String> headings = [
     'Product List',
     'Add Product',
-    'Report',
-    'User Order Screen'
+    'User Order Screen',
   ];
+  int? currentIndex;
   @override
   Widget build(BuildContext context) {
     List<Widget> _widgetOption = [
@@ -35,11 +34,23 @@ class BottomNavigation extends StatelessWidget {
     return SafeArea(
         child: Scaffold(
       appBar: AppBar(
-        leading: IconButton(
-            onPressed: () {
-              Get.to(() => SeachScreen());
-            },
-            icon: Icon(Icons.search_outlined)),
+        // leading: IconButton(
+        //     onPressed: () {
+        //       showAboutDialog(
+        //           applicationIcon: Image.asset(
+        //             'assests/images/Group.png',
+        //             width: 70,
+        //             height: 70,
+        //           ),
+        //           context: context,
+        //           applicationName: 'Furnidesk',
+        //           applicationVersion: '1.1.0',
+        //           children: [
+        //             const Text(
+        //                 "Furnidesk is a Tables Ecommerce Platform Created by Athul"),
+        //           ]);
+        //     },
+        //     icon: Icon(Icons.privacy_tip)),
         backgroundColor: Colors.black,
         title: GetBuilder<Controller>(
           id: 'indexchange',
@@ -69,10 +80,7 @@ class BottomNavigation extends StatelessWidget {
                     confirmTextColor: Colors.red,
                     onConfirm: () {
                       data_control.logOut(context);
-                    }
-
-                    // confirm: data_control.logOut(context),
-                    );
+                    });
               },
               icon: Icon(Icons.login_sharp))
         ],

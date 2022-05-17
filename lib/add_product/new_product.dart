@@ -46,14 +46,11 @@ class NewProductScreen extends StatelessWidget {
                       child: Row(children: [
                         IconButton(
                           onPressed: () async {
-                            // if (imag!.isEmpty) {
-                            //   return;
-                            // }
                             await pickImage();
                             // controller.image = imag;
 
-                            // controller.update();
-                            print(controller.image);
+                            // // controller.update();
+                            // print(controller.image);
                             // print(imag);
                           },
                           icon: const Icon(
@@ -77,17 +74,20 @@ class NewProductScreen extends StatelessWidget {
                             GetBuilder<Controller>(
                                 // id: 'product',
                                 builder: (controller) {
+                              print(
+                                  '${controller.image == null}this is null era');
                               return Container(
                                 width: 150,
                                 height: 150,
                                 decoration: BoxDecoration(
-                                    image: controller.image != null
-                                        ? DecorationImage(
-                                            image:
-                                                MemoryImage(controller.image!))
-                                        : DecorationImage(
-                                            image: NetworkImage(
-                                                'https://upload.wikimedia.org/wikipedia/commons/thumb/6/65/No-Image-Placeholder.svg/1665px-No-Image-Placeholder.svg.png'))),
+                                  image: controller.image == null
+                                      ? DecorationImage(
+                                          image: NetworkImage(
+                                              'https://upload.wikimedia.org/wikipedia/commons/thumb/6/65/No-Image-Placeholder.svg/1665px-No-Image-Placeholder.svg.png'))
+                                      : DecorationImage(
+                                          image:
+                                              MemoryImage(controller.image!)),
+                                ),
                               );
                             })
                           ],
@@ -210,7 +210,7 @@ class NewProductScreen extends StatelessWidget {
                     if (_formKey.currentState!.validate()) {
                       dynamic imgUrl = await selectImage();
 
-                      controller.Addproduct(
+                      await controller.Addproduct(
                           productId: uuid.v4(),
                           productName: _productName.text,
                           productDes: _productDescripiton.text,
@@ -218,11 +218,16 @@ class NewProductScreen extends StatelessWidget {
                           productPrice: _productprice.text,
                           // productCategory: _productCategory.text,
                           file: imgUrl);
-                          
+                      // controller.image = null;
+                      controller.image == null;
+                      // Get.offAll(() => BottomNavigation());
                       Navigator.of(context)
-                          .pushReplacement(MaterialPageRoute(
-                              builder: (context) => BottomNavigation()))
+                          .push(MaterialPageRoute(
+                              builder: (context) => BottomNavigation(
+                                    currentIndex: 0,
+                                  )))
                           .whenComplete;
+
                       Fluttertoast.showToast(msg: "Product Added Sucessfully!");
 
                       // var alertStyle = AlertStyle(
@@ -312,7 +317,7 @@ class NewProductScreen extends StatelessWidget {
     if (file != null) {
       controller.image = await file.readAsBytes();
       controller.update();
-    
+
       // return await file.readAsBytes();
     }
     print('No image se');
@@ -320,8 +325,7 @@ class NewProductScreen extends StatelessWidget {
 
   Future<String> selectImage() async {
     // Uint8List im = await pickImage();
-    String _image =
-        await controller.uploadImageToStorage('prod', controller.image!);
+    String _image = await controller.uploadImageToStorages(controller.image!);
     return _image;
   }
 

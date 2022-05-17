@@ -9,6 +9,7 @@ import 'package:get/get.dart';
 import 'package:seller/add_product/new_product.dart';
 import 'package:seller/login/login_screen.dart';
 import 'package:seller/model/product_model.dart';
+import 'package:uuid/uuid.dart';
 
 Controller controller = Get.find();
 
@@ -193,6 +194,34 @@ class Controller extends GetxController {
     TaskSnapshot snapshot = await uploadTask;
     String downloadURL = await snapshot.ref.getDownloadURL();
     return downloadURL;
+  }
+  
+  
+  
+  
+  Future<String> uploadImageToStorages(Uint8List file) async {
+    String id = const Uuid().v1();
+    try {
+      print("""888
+reached
+ to
+  upload
+  
+  
+          """);
+      Reference ref = _storage.ref("productsimages/$id");
+      print("888  ${ref.toString()}");
+      UploadTask uploadTask = ref.putData(file);
+      final ss = await uploadTask;
+      final link = await ss.ref.getDownloadURL();
+      return link;
+    } on FirebaseException catch (e) {
+
+      print("888 ${e.toString()}");
+    }
+    // final snapshot =  await uploadTask;
+    // return await snapshot.ref.getDownloadURL();
+    return "error";
   }
 }
 

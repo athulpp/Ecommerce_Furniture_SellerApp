@@ -34,14 +34,14 @@ class DetailScreen extends StatelessWidget {
         // crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           Padding(
-            padding: const EdgeInsets.all(10.0),
+            padding: const EdgeInsets.all(8.0),
             child: Container(
               width: double.infinity,
               height: MediaQuery.of(context).size.height * 0.4,
               decoration: BoxDecoration(
                 color: Colors.brown.shade200,
                 borderRadius: const BorderRadius.only(
-                  bottomLeft: Radius.circular(20),
+                  bottomLeft: Radius.circular(10),
                   bottomRight: Radius.circular(20),
                 ),
               ),
