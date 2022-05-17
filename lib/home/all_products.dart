@@ -86,8 +86,8 @@ class AllProductList extends StatelessWidget {
                                     width: 100,
                                     height: 100,
                                     decoration: BoxDecoration(
-                                      color: Colors.grey.shade100,
-                                      border: Border.all(color: Colors.grey),
+                                      // color: Colors.grey.shade100,
+                                      // border: Border.all(color: Colors.grey),
                                       image: DecorationImage(
                                         image: NetworkImage(
                                             documentSnapshot['productimage']),

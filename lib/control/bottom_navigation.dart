@@ -34,57 +34,100 @@ class BottomNavigation extends StatelessWidget {
     return SafeArea(
         child: Scaffold(
       appBar: AppBar(
-        // leading: IconButton(
-        //     onPressed: () {
-        //       showAboutDialog(
-        //           applicationIcon: Image.asset(
-        //             'assests/images/Group.png',
-        //             width: 70,
-        //             height: 70,
-        //           ),
-        //           context: context,
-        //           applicationName: 'Furnidesk',
-        //           applicationVersion: '1.1.0',
-        //           children: [
-        //             const Text(
-        //                 "Furnidesk is a Tables Ecommerce Platform Created by Athul"),
-        //           ]);
-        //     },
-        //     icon: Icon(Icons.privacy_tip)),
-        backgroundColor: Colors.black,
-        title: GetBuilder<Controller>(
-          id: 'indexchange',
-          builder: (controller) {
-            return Text(headings[data_control.selectedIndex]);
-          },
-        ),
-        centerTitle: true,
-        automaticallyImplyLeading: false,
-        actions: [
-          IconButton(
-              onPressed: () {
-                // data_control.logOut(context);
-                Get.defaultDialog(
-                    buttonColor: Colors.white,
-                    barrierDismissible: true,
-                    title: 'Logout',
-                    titleStyle: TextStyle(fontSize: 18),
-                    middleText: "Do you Want to Logout ?",
-                    middleTextStyle: const TextStyle(
-                      fontSize: 16,
-                    ),
-                    radius: 20,
-                    textCancel: 'No',
-                    cancelTextColor: Colors.green,
-                    textConfirm: 'Yes',
-                    confirmTextColor: Colors.red,
-                    onConfirm: () {
-                      data_control.logOut(context);
-                    });
-              },
-              icon: Icon(Icons.login_sharp))
-        ],
-      ),
+          // leading: IconButton(
+          //     onPressed: () {
+          //       showAboutDialog(
+          //           applicationIcon: Image.asset(
+          //             'assests/images/Group.png',
+          //             width: 70,
+          //             height: 70,
+          //           ),
+          //           context: context,
+          //           applicationName: 'Furnidesk',
+          //           applicationVersion: '1.1.0',
+          //           children: [
+          //             const Text(
+          //                 "Furnidesk is a Tables Ecommerce Platform Created by Athul"),
+          //           ]);
+          //     },
+          //     icon: Icon(Icons.privacy_tip)),
+          backgroundColor: Colors.black,
+          title: GetBuilder<Controller>(
+            id: 'indexchange',
+            builder: (controller) {
+              return Text(headings[data_control.selectedIndex]);
+            },
+          ),
+          centerTitle: true,
+          automaticallyImplyLeading: false,
+          actions: [
+            PopupMenuButton(
+              itemBuilder: ((BuildContext context) {
+                return <PopupMenuItem>[
+                  PopupMenuItem(
+                      child: GestureDetector(
+                          child: Text('Logout'),
+                          onTap: () {
+                            Get.defaultDialog(
+                                buttonColor: Colors.white,
+                                barrierDismissible: true,
+                                title: 'Logout',
+                                titleStyle: TextStyle(fontSize: 18),
+                                middleText: "Do you Want to Logout ?",
+                                middleTextStyle: const TextStyle(
+                                  fontSize: 16,
+                                ),
+                                radius: 20,
+                                textCancel: 'No',
+                                cancelTextColor: Colors.green,
+                                textConfirm: 'Yes',
+                                confirmTextColor: Colors.red,
+                                onConfirm: () {
+                                  data_control.logOut(context);
+                                });
+                          })),
+                  PopupMenuItem(
+                      child: GestureDetector(
+                    child: Text('Privacy Policies'),
+                    onTap: () {
+                      showAboutDialog(
+                          applicationIcon: Image.asset(
+                            'assests/images/Group.png',
+                            width: 70,
+                            height: 70,
+                          ),
+                          context: context,
+                          applicationName: 'Furnidesk',
+                          applicationVersion: '1.1.0',
+                          children: [
+                            const Text(
+                                "Furnidesk is a Tables Ecommerce Platform Created by Athul"),
+                          ]);
+                    },
+                  ))
+                ];
+              }),
+            )
+          ]),
+      // data_control.logOut(context);
+      // Get.defaultDialog(
+      //     buttonColor: Colors.white,
+      //     barrierDismissible: true,
+      //     title: 'Logout',
+      //     titleStyle: TextStyle(fontSize: 18),
+      //     middleText: "Do you Want to Logout ?",
+      //     middleTextStyle: const TextStyle(
+      //       fontSize: 16,
+      //     ),
+      //     radius: 20,
+      //     textCancel: 'No',
+      //     cancelTextColor: Colors.green,
+      //     textConfirm: 'Yes',
+      //     confirmTextColor: Colors.red,
+      //     onConfirm: () {
+      //       data_control.logOut(context);
+      //     });
+
       body: GetBuilder<Controller>(
           init: Controller(),
           id: 'indexchange',
