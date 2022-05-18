@@ -7,7 +7,7 @@ import 'package:seller/control/bottom_navigation.dart';
 import 'package:seller/model/address.dart';
 import 'package:seller/model/cart.dart';
 import 'package:seller/model/order.dart';
-import 'package:seller/user_order/order_list_view.dart';
+
 
 class MyOrderDetailsScreen extends StatelessWidget {
   MyOrderDetailsScreen(
