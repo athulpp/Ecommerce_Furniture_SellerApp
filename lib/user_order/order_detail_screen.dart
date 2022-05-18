@@ -1,6 +1,7 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 
 import 'package:flutter/material.dart';
+import 'package:fluttertoast/fluttertoast.dart';
 import 'package:get/get.dart';
 import 'package:seller/control/bottom_navigation.dart';
 import 'package:seller/model/address.dart';
@@ -186,23 +187,26 @@ class MyOrderDetailsScreen extends StatelessWidget {
                   child: CustomButton(
                     size,
                     () {
-                      changeStatus(Order(
-                          orderId: orderId,
-                          userId: userId,
-                          createdDate: OrderDate,
-                          cart: Cart(
-                              productName: orderName,
-                              productDes: orderDes,
-                              productPrice: orderPrice.toString(),
-                              ProductQuantity: Quantity,
-                              productImage: orderImage),
-                          address: Address(
-                              name: username,
-                              address: address,
-                              pincode: pin,
-                              PhoneNumber: phonNo),
-                          status: 'Delivery in 7 day',
-                          totalPrice: orderPrice));
+                      (status == 'Rejected')
+                          ? Fluttertoast.showToast(
+                              msg: 'The Order is already Rejected')
+                          : changeStatus(Order(
+                              orderId: orderId,
+                              userId: userId,
+                              createdDate: OrderDate,
+                              cart: Cart(
+                                  productName: orderName,
+                                  productDes: orderDes,
+                                  productPrice: orderPrice.toString(),
+                                  ProductQuantity: Quantity,
+                                  productImage: orderImage),
+                              address: Address(
+                                  name: username,
+                                  address: address,
+                                  pincode: pin,
+                                  PhoneNumber: phonNo),
+                              status: 'Delivery in 7 day',
+                              totalPrice: orderPrice));
                       Get.off(() => BottomNavigation(
                             currentIndex: 2,
                           ));
@@ -213,23 +217,25 @@ class MyOrderDetailsScreen extends StatelessWidget {
                 ),
                 Expanded(
                   child: CustomButton(size, () {
-                    cancelStatus(Order(
-                        orderId: orderId,
-                        userId: userId,
-                        createdDate: OrderDate,
-                        cart: Cart(
-                            productName: orderName,
-                            productDes: orderDes,
-                            productPrice: orderPrice.toString(),
-                            ProductQuantity: Quantity,
-                            productImage: orderImage),
-                        address: Address(
-                            name: username,
-                            address: address,
-                            pincode: pin,
-                            PhoneNumber: phonNo),
-                        status: 'Rejected',
-                        totalPrice: orderPrice));
+                    (status == 'Delivery in 7 day')
+                        ? Fluttertoast.showToast(msg: 'Order is Placed')
+                        : cancelStatus(Order(
+                            orderId: orderId,
+                            userId: userId,
+                            createdDate: OrderDate,
+                            cart: Cart(
+                                productName: orderName,
+                                productDes: orderDes,
+                                productPrice: orderPrice.toString(),
+                                ProductQuantity: Quantity,
+                                productImage: orderImage),
+                            address: Address(
+                                name: username,
+                                address: address,
+                                pincode: pin,
+                                PhoneNumber: phonNo),
+                            status: 'Rejected',
+                            totalPrice: orderPrice));
                     Get.off(() => BottomNavigation(
                           currentIndex: 2,
                         ));
