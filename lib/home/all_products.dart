@@ -54,21 +54,20 @@ class AllProductList extends StatelessWidget {
                           child: Card(
                             elevation: 5,
                             child: ListTile(
-                              onTap: () {
-                                Get.to(() => DetailScreen(
-                                      productId: documentSnapshot.id,
-                                      productName:
-                                          documentSnapshot['productname'],
-                                      productDesc:
-                                          documentSnapshot['productdes'],
-                                      productPrice:
-                                          documentSnapshot['productprice'],
-                                      productQuantity:
-                                          documentSnapshot['productquantity'],
-                                      productImage:
-                                          documentSnapshot['productimage'],
-                                    ));
-                              },
+                              // Get.to(() => DetailScreen(
+                              //       productId: documentSnapshot.id,
+                              //       productName:
+                              //           documentSnapshot['productname'],
+                              //       productDesc:
+                              //           documentSnapshot['productdes'],
+                              //       productPrice:
+                              //           documentSnapshot['productprice'],
+                              //       productQuantity:
+                              //           documentSnapshot['productquantity'],
+                              //       productImage:
+                              //           documentSnapshot['productimage'],
+                              //     ));
+
                               title: Column(
                                 children: [
                                   SizedBox(
