@@ -186,9 +186,9 @@ class OrderListView extends StatelessWidget {
                                   padding: const EdgeInsets.all(8.0),
                                   child: Text(
                                     each.cart.productName,
-                                    textScaleFactor: 1.5,
-                                    style:
-                                        TextStyle(fontWeight: FontWeight.bold),
+                                    textScaleFactor: 1.2,
+                                    style: GoogleFonts.raleway(
+                                        fontWeight: FontWeight.bold),
                                   ),
                                 ),
                                 (each.status == 'Rejected' ||
@@ -198,14 +198,14 @@ class OrderListView extends StatelessWidget {
                                         style: GoogleFonts.abel(
                                             color: Colors.red,
                                             fontWeight: FontWeight.bold,
-                                            fontSize: 18),
+                                            fontSize: 16),
                                       )
                                     : Text(
                                         each.status,
                                         style: GoogleFonts.abel(
                                             color: Colors.green,
                                             fontWeight: FontWeight.bold,
-                                            fontSize: 18),
+                                            fontSize: 16),
                                       ),
                                 TextButton(
                                   onPressed: () {
@@ -230,10 +230,10 @@ class OrderListView extends StatelessWidget {
                                         ));
                                   },
                                   child: Text('View More',
-                                      style: GoogleFonts.adventPro(
+                                      style: GoogleFonts.raleway(
                                           color: Colors.blue,
                                           fontWeight: FontWeight.bold,
-                                          fontSize: 20)),
+                                          fontSize: 16)),
                                   style: ButtonStyle(
                                       elevation: MaterialStateProperty.all(0),
                                       padding: MaterialStateProperty.all(
@@ -291,17 +291,34 @@ class OrderListView extends StatelessWidget {
                                         )
                                       ]),
                                   TableRow(children: [
-                                    Text(each.cart.productName,
-                                        textScaleFactor: 1.2),
-                                    Text(each.cart.ProductQuantity,
-                                        textScaleFactor: 1.5),
-                                    Text(
+                                    Center(
+                                      child: Text(
+                                        each.cart.productName,
+                                        textScaleFactor: 1.2,
+                                        style: GoogleFonts.abel(
+                                            fontWeight: FontWeight.bold),
+                                      ),
+                                    ),
+                                    Center(
+                                      child: Text(
+                                        each.cart.ProductQuantity,
+                                        textScaleFactor: 1.5,
+                                        style: GoogleFonts.abel(
+                                            fontWeight: FontWeight.bold),
+                                      ),
+                                    ),
+                                    Center(
+                                      child: Text(
                                         DateTime.fromMicrosecondsSinceEpoch(each
                                                 .createdDate
                                                 .microsecondsSinceEpoch)
                                             .toString()
                                             .substring(0, 10),
-                                        textScaleFactor: 1.2),
+                                        textScaleFactor: 1.2,
+                                        style: GoogleFonts.abel(
+                                            fontWeight: FontWeight.bold),
+                                      ),
+                                    ),
                                   ]),
                                 ],
                               ),
