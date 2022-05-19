@@ -5,6 +5,7 @@ import 'package:firebase_storage/firebase_storage.dart';
 import 'package:flutter/material.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 import 'package:get/get.dart';
+import 'package:google_fonts/google_fonts.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:seller/add_product/new_product.dart';
 import 'package:seller/control/bottom_navigation.dart';
@@ -63,7 +64,7 @@ class EditProduct extends StatelessWidget {
         backgroundColor: Colors.black,
         title: Text(
           'Edit Product',
-          style: TextStyle(fontWeight: FontWeight.bold),
+          style: GoogleFonts.actor(fontWeight: FontWeight.bold),
         ),
         centerTitle: true,
       ),
@@ -93,9 +94,9 @@ class EditProduct extends StatelessWidget {
                             color: Colors.white,
                           ),
                         ),
-                        const Text(
+                        Text(
                           'Add Image',
-                          style: TextStyle(
+                          style: GoogleFonts.actor(
                               fontSize: 16,
                               fontWeight: FontWeight.bold,
                               color: Colors.white),
@@ -121,18 +122,22 @@ class EditProduct extends StatelessWidget {
                 const SizedBox(
                   height: 20,
                 ),
-                const Text(
+                Text(
                   'Update Product Informations',
-                  style: TextStyle(
-                      fontSize: 16,
+                  style: GoogleFonts.actor(
+                      fontSize: 18,
                       fontWeight: FontWeight.bold,
                       color: Colors.black),
+                ),
+                SizedBox(
+                  height: 20,
                 ),
                 Form(
                     key: _formKey,
                     child: Column(
                       children: [
                         TextFormField(
+                          style: GoogleFonts.actor(fontSize: 20),
                           controller: _productName,
                           onSaved: (value) {
                             _productName.text = value!;
@@ -148,6 +153,7 @@ class EditProduct extends StatelessWidget {
                           height: 10,
                         ),
                         TextFormField(
+                          style: GoogleFonts.actor(fontSize: 20),
                           controller: _productDescripiton,
                           onSaved: (value) {
                             _productDescripiton.text = value!;
@@ -164,6 +170,7 @@ class EditProduct extends StatelessWidget {
                           height: 10,
                         ),
                         TextFormField(
+                          style: GoogleFonts.abel(fontSize: 20),
                           onSaved: (value) {
                             _productprice.text = value!;
                           },
@@ -180,6 +187,7 @@ class EditProduct extends StatelessWidget {
                           height: 10,
                         ),
                         TextFormField(
+                          style: GoogleFonts.abel(fontSize: 20),
                           onSaved: (value) {
                             _prodcutQuantity.text = value!;
                           },
@@ -233,10 +241,10 @@ class EditProduct extends StatelessWidget {
                             msg: "Products Details Updated!!!");
                       }
                     },
-                    child: const Text(
+                    child: Text(
                       'update',
-                      style: TextStyle(
-                        fontSize: 14,
+                      style: GoogleFonts.abel(
+                        fontSize: 18,
                         fontWeight: FontWeight.bold,
                       ),
                     ),
