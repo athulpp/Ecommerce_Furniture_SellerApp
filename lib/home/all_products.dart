@@ -3,6 +3,7 @@ import 'dart:ffi';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:google_fonts/google_fonts.dart';
 import 'package:lottie/lottie.dart';
 import 'package:seller/control/bottom_navigation.dart';
 import 'package:seller/control/controller.dart';
@@ -75,8 +76,9 @@ class AllProductList extends StatelessWidget {
                                   ),
                                   Text(
                                     documentSnapshot['productname'],
-                                    style:
-                                        TextStyle(fontWeight: FontWeight.bold),
+                                    style: GoogleFonts.acme(
+                                        fontWeight: FontWeight.bold,
+                                        fontSize: 18),
                                   ),
                                   SizedBox(
                                     height: 10,
@@ -161,7 +163,10 @@ class AllProductList extends StatelessWidget {
                                         },
                                         child: Text(
                                           'Update',
-                                          style: TextStyle(color: Colors.white),
+                                          style: GoogleFonts.adamina(
+                                              color: Colors.white,
+                                              fontWeight: FontWeight.bold,
+                                              fontSize: 16),
                                         ),
                                       )),
                                   Container(
@@ -230,7 +235,10 @@ class AllProductList extends StatelessWidget {
                                         },
                                         child: Text(
                                           'Delete',
-                                          style: TextStyle(color: Colors.white),
+                                          style: GoogleFonts.adamina(
+                                              color: Colors.white,
+                                              fontWeight: FontWeight.bold,
+                                              fontSize: 16),
                                         ),
                                       ))
                                 ],

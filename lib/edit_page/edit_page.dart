@@ -7,7 +7,7 @@ import 'package:fluttertoast/fluttertoast.dart';
 import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:image_picker/image_picker.dart';
-import 'package:seller/add_product/new_product.dart';
+
 import 'package:seller/control/bottom_navigation.dart';
 import 'package:seller/control/controller.dart';
 
@@ -200,19 +200,6 @@ class EditProduct extends StatelessWidget {
                           decoration:
                               InputDecoration(hintText: 'Product Quantity'),
                         ),
-                        //  TextFormField(
-                        //   onSaved: (value) {
-                        //     _productCategory.text = value!;
-                        //   },
-                        //   validator: (value) {
-                        //     if (value!.isEmpty) {
-                        //       return 'Product Quantity is Required';
-                        //     }
-                        //   },
-                        //   controller: _productCategory,
-                        //   decoration:
-                        //       InputDecoration(hintText: 'Product Quantity'),
-                        // ),
                       ],
                     )),
                 SizedBox(
@@ -265,26 +252,6 @@ class EditProduct extends StatelessWidget {
       ),
     );
   }
-
-  // addProduct() async {
-  //   if (_productName.text.trim().isEmpty &&
-  //       _productDescripiton.text.trim().isEmpty &&
-  //       _productprice.text.trim().isEmpty &&
-  //       _prodcutQuantity.text.trim().isEmpty) {
-  //     return;
-  //   }
-  //   Product model=Product(productName: _productName.text, ProductDescripition:_productDescripiton.text, prdouctPrice:_productprice.text, productQuantity:_prodcutQuantity.text);
-
-  //   await Controller.Addproduct(productName: _productName.text,productDes: _productDescripiton.text,productQuantity: _prodcutQuantity.text,productPrice: _productprice.text,file: selectImage());
-
-  // Product product = Product(
-  //   productName: _productName.text,
-  //   ProductDescripition: _productDescripiton.text,
-  //   prdouctPrice: _productprice.text,
-  //   productQuantity: _prodcutQuantity.text,
-  //   productImage: ,
-  // );
-  // }
 
   pickImage() async {
     final ImagePicker imagePicker = ImagePicker();
