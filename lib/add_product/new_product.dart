@@ -6,6 +6,7 @@ import 'package:flutter/material.dart';
 // import 'package:flutter/services.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 import 'package:get/get.dart';
+import 'package:google_fonts/google_fonts.dart';
 
 import 'package:image_picker/image_picker.dart';
 
@@ -61,10 +62,10 @@ class NewProductScreen extends StatelessWidget {
                         Row(
                           mainAxisAlignment: MainAxisAlignment.spaceBetween,
                           children: [
-                            const Text(
+                            Text(
                               'Add Image',
-                              style: TextStyle(
-                                  fontSize: 16,
+                              style: GoogleFonts.adventPro(
+                                  fontSize: 18,
                                   fontWeight: FontWeight.bold,
                                   color: Colors.white),
                             ),
@@ -97,12 +98,15 @@ class NewProductScreen extends StatelessWidget {
               const SizedBox(
                 height: 20,
               ),
-              const Text(
+              Text(
                 'Product Informations',
-                style: TextStyle(
-                    fontSize: 16,
+                style: GoogleFonts.adventPro(
+                    fontSize: 20,
                     fontWeight: FontWeight.bold,
                     color: Colors.black),
+              ),
+              SizedBox(
+                height: 20,
               ),
               Form(
                   key: _formKey,
@@ -110,6 +114,7 @@ class NewProductScreen extends StatelessWidget {
                     children: [
                       TextFormField(
                         controller: _productName,
+                        style: GoogleFonts.habibi(fontSize: 18),
                         onSaved: (value) {
                           _productName.text = value!;
                         },
@@ -128,6 +133,7 @@ class NewProductScreen extends StatelessWidget {
                         height: 10,
                       ),
                       TextFormField(
+                        style: GoogleFonts.habibi(fontSize: 18),
                         onSaved: (value) {
                           _productDescripiton.text = value!;
                         },
@@ -148,6 +154,7 @@ class NewProductScreen extends StatelessWidget {
                         height: 10,
                       ),
                       TextFormField(
+                        style: GoogleFonts.habibi(fontSize: 18),
                         keyboardType: TextInputType.number,
                         onSaved: (value) {
                           _productprice.text = value!;
@@ -164,6 +171,7 @@ class NewProductScreen extends StatelessWidget {
                         height: 10,
                       ),
                       TextFormField(
+                        style: GoogleFonts.habibi(fontSize: 18),
                         keyboardType: TextInputType.number,
                         onSaved: (value) {
                           _prodcutQuantity.text = value!;
@@ -269,10 +277,10 @@ class NewProductScreen extends StatelessWidget {
                       // ).show();
                     }
                   },
-                  child: const Text(
+                  child: Text(
                     'Save',
-                    style: TextStyle(
-                      fontSize: 14,
+                    style: GoogleFonts.adamina(
+                      fontSize: 18,
                       fontWeight: FontWeight.bold,
                     ),
                   ),
