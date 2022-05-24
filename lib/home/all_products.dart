@@ -76,6 +76,7 @@ class AllProductList extends StatelessWidget {
                                   ),
                                   Text(
                                     documentSnapshot['productname'],
+                                    overflow: TextOverflow.ellipsis,
                                     style: GoogleFonts.acme(
                                         fontWeight: FontWeight.bold,
                                         fontSize: 18),
