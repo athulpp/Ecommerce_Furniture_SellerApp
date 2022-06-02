@@ -3,12 +3,11 @@ import 'package:get/get.dart';
 import 'package:seller/add_product/new_product.dart';
 import 'package:seller/home/all_products.dart';
 
-import '../analytics/analytics_screen.dart';
 
-import '../search/search_screen.dart';
 import '../user_order/order_screen.dart';
 import 'controller.dart';
 
+// ignore: non_constant_identifier_names
 final data_control = Get.put(Controller());
 
 class BottomNavigation extends StatelessWidget {
@@ -23,34 +22,16 @@ class BottomNavigation extends StatelessWidget {
   Widget build(BuildContext context) {
     List<Widget> _widgetOption = [
       AllProductList(),
-      // SeachScreen(),
-      // AddNewProduct(),
+
       NewProductScreen(),
-      // AnalyticScreen(),
-      OrderScreen()
-      // OrdersScreen(),
-      // UserProfileScreen()
+
+     const OrderScreen()
+  
     ];
     return SafeArea(
         child: Scaffold(
       appBar: AppBar(
-          // leading: IconButton(
-          //     onPressed: () {
-          //       showAboutDialog(
-          //           applicationIcon: Image.asset(
-          //             'assests/images/Group.png',
-          //             width: 70,
-          //             height: 70,
-          //           ),
-          //           context: context,
-          //           applicationName: 'Furnidesk',
-          //           applicationVersion: '1.1.0',
-          //           children: [
-          //             const Text(
-          //                 "Furnidesk is a Tables Ecommerce Platform Created by Athul"),
-          //           ]);
-          //     },
-          //     icon: Icon(Icons.privacy_tip)),
+
           backgroundColor: Colors.black,
           title: GetBuilder<Controller>(
             id: 'indexchange',
@@ -66,13 +47,13 @@ class BottomNavigation extends StatelessWidget {
                 return <PopupMenuItem>[
                   PopupMenuItem(
                       child: GestureDetector(
-                          child: Text('Logout'),
+                          child:const Text('Logout'),
                           onTap: () {
                             Get.defaultDialog(
                                 buttonColor: Colors.white,
                                 barrierDismissible: true,
                                 title: 'Logout',
-                                titleStyle: TextStyle(fontSize: 18),
+                                titleStyle:const TextStyle(fontSize: 18),
                                 middleText: "Do you Want to Logout ?",
                                 middleTextStyle: const TextStyle(
                                   fontSize: 16,
@@ -88,7 +69,7 @@ class BottomNavigation extends StatelessWidget {
                           })),
                   PopupMenuItem(
                       child: GestureDetector(
-                    child: Text('Privacy Policies'),
+                    child:const Text('Privacy Policies'),
                     onTap: () {
                       showAboutDialog(
                           applicationIcon: Image.asset(
@@ -109,24 +90,7 @@ class BottomNavigation extends StatelessWidget {
               }),
             )
           ]),
-      // data_control.logOut(context);
-      // Get.defaultDialog(
-      //     buttonColor: Colors.white,
-      //     barrierDismissible: true,
-      //     title: 'Logout',
-      //     titleStyle: TextStyle(fontSize: 18),
-      //     middleText: "Do you Want to Logout ?",
-      //     middleTextStyle: const TextStyle(
-      //       fontSize: 16,
-      //     ),
-      //     radius: 20,
-      //     textCancel: 'No',
-      //     cancelTextColor: Colors.green,
-      //     textConfirm: 'Yes',
-      //     confirmTextColor: Colors.red,
-      //     onConfirm: () {
-      //       data_control.logOut(context);
-      //     });
+
 
       body: GetBuilder<Controller>(
           init: Controller(),
@@ -136,13 +100,13 @@ class BottomNavigation extends StatelessWidget {
           }),
       bottomNavigationBar: Theme(
         data: Theme.of(context).copyWith(
-            // sets the background color of the `BottomNavigationBar`
+ 
             canvasColor: Colors.black,
-            // sets the active color of the `BottomNavigationBar` if `Brightness` is light
+           
             primaryColor: Colors.red,
             textTheme: Theme.of(context)
                 .textTheme
-                .copyWith(caption: new TextStyle(color: Colors.yellow))),
+                .copyWith(caption: const TextStyle(color: Colors.yellow))),
         child: GetBuilder<Controller>(
             id: 'indexchange',
             builder: (controller) {
@@ -158,16 +122,7 @@ class BottomNavigation extends StatelessWidget {
                       ),
                       activeIcon: Icon(Icons.home, color: Colors.white),
                       label: ''),
-                  // BottomNavigationBarItem(
-                  //     icon: Icon(
-                  //       Icons.search,
-                  //       color: Colors.grey,
-                  //     ),
-                  //     activeIcon: Icon(
-                  //       Icons.search,
-                  //       color: Colors.white,
-                  //     ),
-                  //     label: ''),
+
                   BottomNavigationBarItem(
                       icon: Icon(
                         Icons.shopping_cart,
@@ -176,14 +131,7 @@ class BottomNavigation extends StatelessWidget {
                       activeIcon:
                           Icon(Icons.shopping_cart, color: Colors.white),
                       label: ''),
-                  // BottomNavigationBarItem(
-                  //     icon: Icon(
-                  //       Icons.analytics_outlined,
-                  //       color: Colors.grey,
-                  //     ),
-                  //     activeIcon:
-                  //         Icon(Icons.analytics_outlined, color: Colors.white),
-                  //     label: ''),
+              
                   BottomNavigationBarItem(
                       icon: Icon(
                         Icons.receipt_outlined,
