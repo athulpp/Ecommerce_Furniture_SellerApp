@@ -134,7 +134,7 @@ class MyOrderDetailsScreen extends StatelessWidget {
                                   fontSize: 18, fontWeight: FontWeight.w500),
                             ),
                           ),
-                          // Text('Paid amount :'),
+                    
                           Padding(
                             padding: const EdgeInsets.symmetric(vertical: 12),
                             child: Text(
@@ -148,15 +148,12 @@ class MyOrderDetailsScreen extends StatelessWidget {
                             style: GoogleFonts.acme(
                                 fontSize: 18, fontWeight: FontWeight.w500),
                           ),
-                          // Padding(
-                          //   padding: const EdgeInsets.symmetric(vertical: 12),
-                          //   child: text('Delivered on :', '28-10-2021'),
-                          // ),
+                
                         ],
                       ),
                     ),
                   ),
-                  SizedBox(
+               const   SizedBox(
                     height: 20,
                   ),
                   Material(
@@ -199,7 +196,7 @@ class MyOrderDetailsScreen extends StatelessWidget {
                                   fontSize: 18, fontWeight: FontWeight.w500),
                             ),
                           ),
-                          // Text('Paid amount :'),
+     
                           Padding(
                             padding: const EdgeInsets.symmetric(vertical: 12),
                             child: Text(
@@ -209,7 +206,7 @@ class MyOrderDetailsScreen extends StatelessWidget {
                             ),
                           ),
                           Text(
-                            'Pincode : ${pin}',
+                            'Pincode : $pin',
                             style: GoogleFonts.acme(
                                 fontSize: 18, fontWeight: FontWeight.w500),
                           ),

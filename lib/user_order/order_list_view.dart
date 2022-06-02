@@ -39,118 +39,6 @@ class OrderListView extends StatelessWidget {
                     padding: const EdgeInsets.only(left: 10, right: 10, top: 5),
                     child: Column(
                       children: [
-                        // GestureDetector(
-                        // onTap: () {
-                        // TextButton(
-                        //     onPressed: () {
-                        //       Get.to(() => MyOrderDetailsScreen(
-                        //             username: each.address.name.toString(),
-                        //             userId: each.userId.toString(),
-                        //             address: each.address.address.toString(),
-                        //             phonNo: each.address.PhoneNumber.toString(),
-                        //             pin: each.address.pincode.toString(),
-                        //             orderName: each.cart.productName,
-                        //             orderDes: each.cart.productDes,
-                        //             prodPrice: each.cart.productPrice,
-                        //             orderId: each.orderId,
-                        //             orderImage: each.cart.productImage,
-                        //             orderPrice: each.totalPrice,
-                        //             Quantity: each.cart.ProductQuantity,
-                        //             OrderDate: each.createdDate,
-                        //             status: each.status,
-                        //           ));
-                        //     },
-                        //     child: Text('View More')),
-
-                        // },
-                        // child: Card(
-                        //   shadowColor: Colors.black,
-                        //   clipBehavior: Clip.antiAlias,
-                        //   elevation: 5,
-                        //   color: Colors.grey.shade300,
-                        //   child: ListTile(
-                        //     leading: Text(
-                        //       each.address.name.toString(),
-                        //       style: TextStyle(
-                        //           fontWeight: FontWeight.bold, fontSize: 24),
-                        //     ),
-                        //     title: Text(
-                        //       each.cart.productName,
-                        //       style: TextStyle(
-                        //           fontWeight: FontWeight.bold, fontSize: 16),
-                        //     ),
-                        //     subtitle: Text(
-                        //       'Quantiity: ${each.cart.ProductQuantity}',
-                        //       style: TextStyle(
-                        //           fontWeight: FontWeight.bold, fontSize: 16),
-                        //     ),
-                        //     trailing: Text(
-                        //       'Date: ${DateTime.fromMicrosecondsSinceEpoch(each.createdDate.microsecondsSinceEpoch).toString().substring(0, 10)}',
-                        //       style: TextStyle(
-                        //           fontWeight: FontWeight.bold, fontSize: 16),
-                        //     ),
-                        //   ),
-                        // ),
-                        // child: Table(
-                        //   textDirection: TextDirection.ltr,
-                        //   defaultVerticalAlignment:
-                        //       TableCellVerticalAlignment.middle,
-                        //   border:
-                        //       TableBorder.all(width: 2.0, color: Colors.red),
-                        //   // border: TableBorder.all(
-                        //   //     color: Colors.black,
-                        //   //     style: BorderStyle.solid,
-                        //   //     width: 2),
-                        //   children: [
-                        //     TableRow(children: [
-                        //       Column(
-                        //         children: [
-                        //           Center(
-                        //               child: Text(
-                        //             '${index + 1}',
-                        //             textAlign: TextAlign.center,
-                        //           ))
-                        //         ],
-                        //       ),
-                        //       Column(
-                        //         children: [
-                        //           Text(
-                        //             each.address.name.toString(),
-                        //             style: TextStyle(fontSize: 20),
-                        //           ),
-                        //         ],
-                        //       ),
-                        //       Column(
-                        //         children: [
-                        //           Text(
-                        //             each.cart.productName,
-                        //             style: TextStyle(fontSize: 20),
-                        //           ),
-                        //         ],
-                        //       ),
-                        //       Column(
-                        //         children: [
-                        //           Text(
-                        //             each.cart.ProductQuantity,
-                        //             style: TextStyle(fontSize: 20),
-                        //           )
-                        //         ],
-                        //       ),
-                        //       Column(
-                        //         children: [
-                        //           Text(
-                        //             DateTime.fromMicrosecondsSinceEpoch(each
-                        //                     .createdDate
-                        //                     .microsecondsSinceEpoch)
-                        //                 .toString()
-                        //                 .substring(0, 10),
-                        //             style: TextStyle(fontSize: 18),
-                        //           )
-                        //         ],
-                        //       )
-                        //     ]),
-                        //   ],
-                        // ),
                         Column(
                           children: <Widget>[
                             Padding(
@@ -239,8 +127,8 @@ class OrderListView extends StatelessWidget {
                                       padding: MaterialStateProperty.all(
                                           const EdgeInsets.symmetric(
                                               horizontal: 20, vertical: 20)),
-                                      textStyle:
-                                          MaterialStateProperty.all(TextStyle(
+                                      textStyle: MaterialStateProperty.all(
+                                          const TextStyle(
                                         color: Colors.black,
                                       )),
                                       shape: MaterialStateProperty.all<
@@ -256,7 +144,7 @@ class OrderListView extends StatelessWidget {
                             Padding(
                               padding: const EdgeInsets.all(8.0),
                               child: Table(
-                                columnWidths: {
+                                columnWidths: const {
                                   0: FractionColumnWidth(.4),
                                   1: FractionColumnWidth(.2),
                                   2: FractionColumnWidth(.4)
@@ -266,30 +154,29 @@ class OrderListView extends StatelessWidget {
                                     TableCellVerticalAlignment.bottom,
                                 border: TableBorder.all(
                                     width: 1.0,
-                                    color: Color.fromARGB(255, 102, 102, 102)),
+                                    color: const Color.fromARGB(
+                                        255, 102, 102, 102)),
                                 children: [
-                                  TableRow(
-                                      // decoration: tablede,
-                                      children: [
-                                        Center(
-                                          child: Text("Product.",
-                                              textScaleFactor: 1.5,
-                                              style: GoogleFonts.abel(
-                                                  fontWeight: FontWeight.bold)),
-                                        ),
-                                        Center(
-                                          child: Text("Quantity",
-                                              textScaleFactor: 1.35,
-                                              style: GoogleFonts.abel(
-                                                  fontWeight: FontWeight.bold)),
-                                        ),
-                                        Center(
-                                          child: Text("Date",
-                                              textScaleFactor: 1.5,
-                                              style: GoogleFonts.abel(
-                                                  fontWeight: FontWeight.bold)),
-                                        )
-                                      ]),
+                                  TableRow(children: [
+                                    Center(
+                                      child: Text("Product.",
+                                          textScaleFactor: 1.5,
+                                          style: GoogleFonts.abel(
+                                              fontWeight: FontWeight.bold)),
+                                    ),
+                                    Center(
+                                      child: Text("Quantity",
+                                          textScaleFactor: 1.35,
+                                          style: GoogleFonts.abel(
+                                              fontWeight: FontWeight.bold)),
+                                    ),
+                                    Center(
+                                      child: Text("Date",
+                                          textScaleFactor: 1.5,
+                                          style: GoogleFonts.abel(
+                                              fontWeight: FontWeight.bold)),
+                                    )
+                                  ]),
                                   TableRow(children: [
                                     Center(
                                       child: Text(
@@ -323,7 +210,7 @@ class OrderListView extends StatelessWidget {
                                 ],
                               ),
                             ),
-                            Divider(
+                            const Divider(
                               thickness: 5,
                             )
                           ],
@@ -335,25 +222,5 @@ class OrderListView extends StatelessWidget {
                 });
           }),
     );
-    // ListView.builder(
-    //   itemCount: 10,
-    //   itemBuilder: (context, index) {
-    //     return Padding(
-    //       padding: const EdgeInsets.only(left: 10, right: 10, top: 5),
-    //       child: Card(
-    //         shadowColor: Colors.black,
-    //         clipBehavior: Clip.antiAlias,
-    //         elevation: 5,
-    //         color: Colors.grey.shade300,
-    //         child: ListTile(
-    //           leading: Text('User Name'),
-    //           title: Text('product Name'),
-    //           subtitle: Text('item count'),
-    //           trailing: Text('Date purcahsed'),
-    //         ),
-    //       ),
-    //     );
-    //   },
-    // );
   }
 }

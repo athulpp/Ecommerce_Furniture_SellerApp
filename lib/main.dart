@@ -8,15 +8,11 @@ import 'package:get/get.dart';
 
 import 'package:seller/login/splash_screen.dart';
 
-import 'package:seller/theme/theme_manger.dart';
-
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await Firebase.initializeApp();
   runApp(MyApp());
 }
-
-ThemeManger _themeManger = ThemeManger();
 
 class MyApp extends StatelessWidget {
   MyApp({Key? key}) : super(key: key);
