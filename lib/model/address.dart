@@ -13,7 +13,7 @@ class Address {
       };
 
   static Address fromJson(dynamic json) {
-    print("${json['name']} ${json['address']}  ${json['pincode']}  ${json['phoneNumber']} ");
+   
     return Address(
         name: json['name'],
         address: json['address'],
@@ -21,7 +21,5 @@ class Address {
         PhoneNumber: json['phoneNumber']);
   }
 
-  // static fromMap(Map<String, dynamic> map) {}
 
-  // toMap() {}
 }

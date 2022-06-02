@@ -23,8 +23,7 @@ class Cart {
         "image": productImage
       };
   static Cart fromMap(dynamic json) {
-      print(
-        "orderId :   ${json['id']} status:    ${json['name']}  totalPrice:   ${json['des']} image:  ${json['image']} quantity:  ${json['quantity']} price ${json['price']} ");
+      
 
     return Cart(
         cartId: json['id'],

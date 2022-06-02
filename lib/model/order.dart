@@ -34,8 +34,7 @@ class Order {
   }
 
   factory Order.fromMap(dynamic map) {
-    print(
-        "orderId :   ${map['orderId'] ?? "orderId is empty"} status:    ${map['status'] ?? "status is empty"}   totalPrice:   ${map['totalPrice'] ?? "totalprice is empty"} address:  ${map['address'] ?? "address is empty"}          cart:  ${map['cart'] ?? "cart is empty"} createDate ${map['createdDate'] ?? "createDate is empty"} ");
+  
 
     return Order(
       orderId: map['orderId'] ?? "",
