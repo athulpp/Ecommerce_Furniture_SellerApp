@@ -3,7 +3,7 @@ import 'dart:typed_data';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_storage/firebase_storage.dart';
 import 'package:flutter/material.dart';
-// import 'package:flutter/services.dart';
+
 import 'package:fluttertoast/fluttertoast.dart';
 import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
@@ -23,7 +23,7 @@ class NewProductScreen extends StatelessWidget {
   TextEditingController _productDescripiton = TextEditingController();
   TextEditingController _prodcutQuantity = TextEditingController();
   TextEditingController _productprice = TextEditingController();
-  // TextEditingController _productCategory = TextEditingController();
+
   final _formKey = GlobalKey<FormState>();
   final FirebaseStorage _storage = FirebaseStorage.instance;
   final FirebaseAuth _auth = FirebaseAuth.instance;
@@ -48,11 +48,6 @@ class NewProductScreen extends StatelessWidget {
                         IconButton(
                           onPressed: () async {
                             await pickImage();
-                            // controller.image = imag;
-
-                            // // controller.update();
-                            // print(controller.image);
-                            // print(imag);
                           },
                           icon: const Icon(
                             Icons.add_circle,
@@ -69,20 +64,16 @@ class NewProductScreen extends StatelessWidget {
                                   fontWeight: FontWeight.bold,
                                   color: Colors.white),
                             ),
-                            SizedBox(
+                            const SizedBox(
                               width: 90,
                             ),
-                            GetBuilder<Controller>(
-                                // id: 'product',
-                                builder: (controller) {
-                              print(
-                                  '${controller.image == null}this is null era');
+                            GetBuilder<Controller>(builder: (controller) {
                               return Container(
                                 width: 150,
                                 height: 150,
                                 decoration: BoxDecoration(
                                   image: controller.image == null
-                                      ? DecorationImage(
+                                      ? const DecorationImage(
                                           image: NetworkImage(
                                               'https://upload.wikimedia.org/wikipedia/commons/thumb/6/65/No-Image-Placeholder.svg/1665px-No-Image-Placeholder.svg.png'))
                                       : DecorationImage(
@@ -94,7 +85,6 @@ class NewProductScreen extends StatelessWidget {
                           ],
                         )
                       ]))),
-
               const SizedBox(
                 height: 20,
               ),
@@ -105,7 +95,7 @@ class NewProductScreen extends StatelessWidget {
                     fontWeight: FontWeight.bold,
                     color: Colors.black),
               ),
-              SizedBox(
+              const SizedBox(
                 height: 20,
               ),
               Form(
@@ -119,7 +109,7 @@ class NewProductScreen extends StatelessWidget {
                           _productName.text = value!;
                         },
                         validator: (value) {
-                          RegExp regex = new RegExp(r'^.{4,}$');
+                          RegExp regex = RegExp(r'^.{4,}$');
                           if (value!.isEmpty) {
                             return "Please Enter Product Name";
                           }
@@ -127,9 +117,10 @@ class NewProductScreen extends StatelessWidget {
                             return ("Minum 4 lettters required");
                           }
                         },
-                        decoration: InputDecoration(hintText: 'Product Name'),
+                        decoration:
+                            const InputDecoration(hintText: 'Product Name'),
                       ),
-                      SizedBox(
+                      const SizedBox(
                         height: 10,
                       ),
                       TextFormField(
@@ -138,7 +129,7 @@ class NewProductScreen extends StatelessWidget {
                           _productDescripiton.text = value!;
                         },
                         validator: (value) {
-                          RegExp regex = new RegExp(r'^.{20,}$');
+                          RegExp regex = RegExp(r'^.{20,}$');
                           if (value!.isEmpty) {
                             return 'Product Descipition required';
                           }
@@ -147,10 +138,10 @@ class NewProductScreen extends StatelessWidget {
                           }
                         },
                         controller: _productDescripiton,
-                        decoration:
-                            InputDecoration(hintText: 'Product Descripition'),
+                        decoration: const InputDecoration(
+                            hintText: 'Product Descripition'),
                       ),
-                      SizedBox(
+                      const SizedBox(
                         height: 10,
                       ),
                       TextFormField(
@@ -165,9 +156,10 @@ class NewProductScreen extends StatelessWidget {
                             return 'product Price is Required';
                           }
                         },
-                        decoration: InputDecoration(hintText: 'Product Price'),
+                        decoration:
+                            const InputDecoration(hintText: 'Product Price'),
                       ),
-                      SizedBox(
+                      const SizedBox(
                         height: 10,
                       ),
                       TextFormField(
@@ -177,7 +169,7 @@ class NewProductScreen extends StatelessWidget {
                           _prodcutQuantity.text = value!;
                         },
                         validator: (value) {
-                          RegExp regex = new RegExp(r'^.{1,}$');
+                          RegExp regex = RegExp(r'^.{1,}$');
                           if (value!.isEmpty) {
                             return 'Product Quantity is Required';
                           }
@@ -189,26 +181,9 @@ class NewProductScreen extends StatelessWidget {
                         decoration:
                             InputDecoration(hintText: 'Product Quantiy'),
                       ),
-                      // TextFormField(
-                      //   onSaved: (value) {
-                      //     _productCategory.text = value!;
-                      //   },
-                      //   validator: (value) {
-                      //     RegExp regex = new RegExp(r'^.{4,}$');
-                      //     if (value!.isEmpty) {
-                      //       return 'Product Category is Required';
-                      //     }
-                      //     if (!regex.hasMatch(value)) {
-                      //       return ("Minimum 4 letters  required)");
-                      //     }
-                      //   },
-                      //   controller: _prodcutQuantity,
-                      //   decoration:
-                      //       InputDecoration(hintText: 'Product Category'),
-                      // ),
                     ],
                   )),
-              SizedBox(
+              const SizedBox(
                 height: 20,
               ),
               Center(
@@ -224,11 +199,10 @@ class NewProductScreen extends StatelessWidget {
                           productDes: _productDescripiton.text,
                           productQuantity: _prodcutQuantity.text,
                           productPrice: _productprice.text,
-                          // productCategory: _productCategory.text,
                           file: imgUrl);
-                      // controller.image = null;
+
                       controller.image == null;
-                      // Get.offAll(() => BottomNavigation());
+
                       Navigator.of(context)
                           .push(MaterialPageRoute(
                               builder: (context) => BottomNavigation(
@@ -237,44 +211,6 @@ class NewProductScreen extends StatelessWidget {
                           .whenComplete;
 
                       Fluttertoast.showToast(msg: "Product Added Sucessfully!");
-
-                      // var alertStyle = AlertStyle(
-                      //   animationType: AnimationType.fromTop,
-                      //   isCloseButton: false,
-                      //   isOverlayTapDismiss: false,
-                      //   descStyle: TextStyle(fontWeight: FontWeight.bold),
-                      //   descTextAlign: TextAlign.start,
-                      //   animationDuration: Duration(milliseconds: 400),
-                      //   alertBorder: RoundedRectangleBorder(
-                      //     borderRadius: BorderRadius.circular(0.0),
-                      //     side: BorderSide(
-                      //       color: Colors.grey,
-                      //     ),
-                      //   ),
-                      //   titleStyle: TextStyle(
-                      //     color: Colors.red,
-                      //   ),
-                      //   alertAlignment: Alignment.topRight,
-                      // );
-                      // Alert(
-                      //   context: context,
-                      //   style: alertStyle,
-                      //   type: AlertType.success,
-                      //   title: "Product Added Sucessfully",
-                      //   desc: "Added",
-                      //   // buttons: [
-                      //   //   DialogButton(
-                      //   //     child: Text(
-                      //   //       "COOL",
-                      //   //       style:
-                      //   //           TextStyle(color: Colors.white, fontSize: 20),
-                      //   //     ),
-                      //   //     onPressed: () => Navigator.pop(context),
-                      //   //     color: Color.fromRGBO(0, 179, 134, 1.0),
-                      //   //     radius: BorderRadius.circular(0.0),
-                      //   //   ),
-                      //   // ],
-                      // ).show();
                     }
                   },
                   child: Text(
@@ -286,37 +222,12 @@ class NewProductScreen extends StatelessWidget {
                   ),
                 ),
               ),
-              // Obx(
-              //   () => imag != null
-              //       ? Image.memory(imag!, width: 100, height: 100)
-              //       : CircularProgressIndicator(),
-              // ),
             ],
           ),
         ),
       ),
     );
   }
-
-  // addProduct() async {
-  //   if (_productName.text.trim().isEmpty &&
-  //       _productDescripiton.text.trim().isEmpty &&
-  //       _productprice.text.trim().isEmpty &&
-  //       _prodcutQuantity.text.trim().isEmpty) {
-  //     return;
-  //   }
-  //   Product model=Product(productName: _productName.text, ProductDescripition:_productDescripiton.text, prdouctPrice:_productprice.text, productQuantity:_prodcutQuantity.text);
-
-  //   await Controller.Addproduct(productName: _productName.text,productDes: _productDescripiton.text,productQuantity: _prodcutQuantity.text,productPrice: _productprice.text,file: selectImage());
-
-  // Product product = Product(
-  //   productName: _productName.text,
-  //   ProductDescripition: _productDescripiton.text,
-  //   prdouctPrice: _productprice.text,
-  //   productQuantity: _prodcutQuantity.text,
-  //   productImage: ,
-  // );
-  // }
 
   pickImage() async {
     final ImagePicker imagePicker = ImagePicker();
@@ -325,28 +236,11 @@ class NewProductScreen extends StatelessWidget {
     if (file != null) {
       controller.image = await file.readAsBytes();
       controller.update();
-
-      // return await file.readAsBytes();
     }
-    print('No image se');
   }
 
   Future<String> selectImage() async {
-    // Uint8List im = await pickImage();
     String _image = await controller.uploadImageToStorages(controller.image!);
     return _image;
   }
-
-  // Future<String> uploadImageToStorage(
-  //     String childName, Uint8List _image, bool isPost) async {
-  //   Reference ref =
-  //       _storage.ref().child(childName).child(_auth.currentUser!.uid);
-
-  //   UploadTask uploadTask = ref.putData(_image);
-  //   await uploadTask;
-
-  //   TaskSnapshot snapshot = await uploadTask;
-  //   String downloadURL = await snapshot.ref.getDownloadURL();
-  //   return downloadURL;
-  // }
 }
