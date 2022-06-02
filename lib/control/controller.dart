@@ -25,46 +25,9 @@ class Controller extends GetxController {
   Uint8List? upimage;
 
   static String products = 'a';
-  // static String productid = '';
-  // static String productId = '';
-  // static String productname = '';
-  // static String productprice = '';
-  // static String productQuantity = '';
-  // static String productRating = '';
-  // static String productImage = '';
 
-  // static Future<String> AddProduct(ProductModel model) async {
-  //   final firestore = FirebaseFirestore.instance.collection(productId).doc();
-  //   model.productId = firestore.id;
-  //   await firestore.set(
-  //     model.toJson(),
-  //   );
-  //   return firestore.id;
-  // }
-//   Future<String> loginUser({required String email, required String password}) {
-//     String res = 'Some Error';
 
-//     try{
-// if (email.isNotEmpty|| password.isNotEmpty){
-
-// }
-//     }catch{
-
-//     }
-//   }
-
-  // Stream<List<Product>> getproduct() =>
-  //     FirebaseFirestore.instance.collection(products).snapshots().map(
-  //           (snapshot) => snapshot.docs
-  //               .map(
-  //                 (json) => Product.fromJson(
-  //                   json.data(),
-  //                 ),
-  //               )
-  //               .toList(),
-  //         );
-
-  final storage = new FlutterSecureStorage();
+  final storage = const FlutterSecureStorage();
   logOut(context) async {
     await FirebaseAuth.instance.signOut();
     await storage.delete(key: "uid");
@@ -72,16 +35,7 @@ class Controller extends GetxController {
     Get.to(() => LoginScreen());
   }
 
-//   final auth = FirebaseAuth.instance;
-// String userEmail = 'userId';
-// // Uint8List? file;
-// final FirebaseFirestore _firestore = FirebaseFirestore.instance;
-// // Future<String> createProduct(ProductModel model) async {
-// //   final fireStore = FirebaseFirestore.instance
-// //       .collection(
-// //         userEmail,
-// //       )
-// //       .doc();
+
   final auth = FirebaseAuth.instance;
 
   Future<String> Addproduct(
@@ -90,13 +44,10 @@ class Controller extends GetxController {
       required String productDes,
       required String productQuantity,
       required String productPrice,
-      // required String productCategory,
+
       required String file}) async {
     final fireStore = FirebaseFirestore.instance;
-    // .collection(
-    //   'products',
-    // )
-    // .doc();
+
 
     try {
       if (productName.isNotEmpty ||
@@ -105,15 +56,14 @@ class Controller extends GetxController {
           productPrice.isNotEmpty ||
           file.isNotEmpty) ;
 
-      // String PhotoUrl = await uploadImageToStorage('productPic', file);
-      // var uuid = Uuid().v1();
+
       Product product = Product(
           id: productId,
           productName: productName,
           ProductDescripition: productDes,
           prdouctPrice: productPrice,
           productQuantity: productQuantity,
-          // productCategory: productCategory,
+ 
           productImage: file);
 
       fireStore.collection('products').doc(productId).set(product.toJson());
@@ -121,9 +71,7 @@ class Controller extends GetxController {
     } catch (e) {
       String result = e.toString();
     }
-    // final json = product.toJson();
-    // await fireStore.set(json);
-    // return fireStore.id;
+
     return productName;
   }
 
@@ -132,7 +80,7 @@ class Controller extends GetxController {
       required String productName,
       required String productDes,
       required String productQuantity,
-      // required String productCategory,
+
       required String productPrice,
       required String file}) async {
     Product product = Product(
@@ -141,7 +89,7 @@ class Controller extends GetxController {
         ProductDescripition: productDes,
         prdouctPrice: productPrice,
         productQuantity: productQuantity,
-        // productCategory: productCategory,
+  
         productImage: file);
     final fireStore = FirebaseFirestore.instance;
     fireStore.collection('products').doc(productId).delete();
@@ -152,7 +100,7 @@ class Controller extends GetxController {
       required String productName,
       required String productDes,
       required String productQuantity,
-      // required String productCategory,
+
       required String productPrice,
       required String file}) async {
     Product product = Product(
@@ -161,7 +109,7 @@ class Controller extends GetxController {
         ProductDescripition: productDes,
         prdouctPrice: productPrice,
         productQuantity: productQuantity,
-        // productCategory:productCategory ,
+
         productImage: file);
     final fireStore = FirebaseFirestore.instance;
     fireStore.collection('products').doc(productId).update(product.toJson());
@@ -202,15 +150,9 @@ class Controller extends GetxController {
   Future<String> uploadImageToStorages(Uint8List file) async {
     String id = const Uuid().v1();
     try {
-      print("""888
-reached
- to
-  upload
-  
-  
-          """);
+
       Reference ref = _storage.ref("productsimages/$id");
-      print("888  ${ref.toString()}");
+
       UploadTask uploadTask = ref.putData(file);
       final ss = await uploadTask;
       final link = await ss.ref.getDownloadURL();
@@ -219,11 +161,8 @@ reached
 
       print("888 ${e.toString()}");
     }
-    // final snapshot =  await uploadTask;
-    // return await snapshot.ref.getDownloadURL();
+
     return "error";
   }
 }
 
-// class Uint8List {
-// 
