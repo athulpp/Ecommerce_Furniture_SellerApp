@@ -1,11 +1,7 @@
-import 'dart:math';
-
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_secure_storage/flutter_secure_storage.dart';
 import 'package:fluttertoast/fluttertoast.dart';
-import 'package:get/get.dart';
-import 'package:seller/home/home_screen.dart';
 
 import '../const/constant.dart';
 import '../const/custom_button.dart';
@@ -14,8 +10,8 @@ import '../control/bottom_navigation.dart';
 class LoginScreen extends StatelessWidget {
   LoginScreen({Key? key}) : super(key: key);
   final auth = FirebaseAuth.instance;
-  TextEditingController _emailController = TextEditingController();
-  TextEditingController _passwordController = TextEditingController();
+  final TextEditingController _emailController = TextEditingController();
+  final TextEditingController _passwordController = TextEditingController();
   final _formKey = GlobalKey<FormState>();
   final storage = new FlutterSecureStorage();
   String? result;
@@ -29,11 +25,11 @@ class LoginScreen extends StatelessWidget {
             child: Column(
               children: [
                 height40,
-                Text(
+                const Text(
                   'Log In Seller',
                   style: mainHeading,
                 ),
-                SizedBox(
+                const SizedBox(
                   height: 30,
                 ),
                 Center(
@@ -42,14 +38,14 @@ class LoginScreen extends StatelessWidget {
                     color: Colors.brown,
                   ),
                 ),
-                SizedBox(
+                const SizedBox(
                   height: 30,
                 ),
-                Text(
+                const Text(
                   'Enter your email and password below',
                   style: TextStyle(fontSize: 20),
                 ),
-                SizedBox(
+                const SizedBox(
                   height: 30,
                 ),
                 Form(
@@ -76,8 +72,6 @@ class LoginScreen extends StatelessWidget {
                           controller: _emailController,
                           keyboardType: TextInputType.emailAddress,
                           decoration: const InputDecoration(
-                              // border: OutlineInputBorder(),
-                              // fillColor: Colors.grey,
                               filled: true,
                               labelText: 'Email address',
                               prefixIcon: Icon(
@@ -91,7 +85,7 @@ class LoginScreen extends StatelessWidget {
                         padding: const EdgeInsets.only(left: 20, right: 20),
                         child: TextFormField(
                             validator: ((value) {
-                              RegExp regex = new RegExp(r'^.{6,}$');
+                              RegExp regex = RegExp(r'^.{6,}$');
                               if (value!.isEmpty) {
                                 return ("Password is required for login");
                               }
@@ -105,8 +99,6 @@ class LoginScreen extends StatelessWidget {
                             controller: _passwordController,
                             obscureText: true,
                             decoration: const InputDecoration(
-                              // border: OutlineInputBorder(),
-                              // fillColor: Colors.grey,
                               filled: true,
                               labelText: 'Password',
                               prefixIcon: Icon(
@@ -123,13 +115,6 @@ class LoginScreen extends StatelessWidget {
                   onPressed: () {
                     signIn(context, _emailController.text,
                         _passwordController.text);
-
-                    // Navigator.push(
-                    //     context,
-                    //     MaterialPageRoute(
-                    //         builder: (context) => BottomNavigation()));
-
-                    // Get.to(() => HomeScreen());
                   },
                   text: 'Log In',
                 )
