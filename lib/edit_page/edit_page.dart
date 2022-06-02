@@ -19,7 +19,6 @@ class EditProduct extends StatelessWidget {
       required this.productDesc,
       required this.productPrice,
       required this.productQuantity,
-      // required this.productCategory,
       required this.productImage})
       : super(key: key);
   final productId;
@@ -27,21 +26,17 @@ class EditProduct extends StatelessWidget {
   String productDesc;
   String productPrice;
   String productQuantity;
-  // String productCategory;
+
   String productImage;
-  TextEditingController _productName = TextEditingController();
-  TextEditingController _productDescripiton = TextEditingController();
-  TextEditingController _prodcutQuantity = TextEditingController();
-  TextEditingController _productprice = TextEditingController();
-  // TextEditingController _productCategory = TextEditingController();
+  final TextEditingController _productName = TextEditingController();
+  final TextEditingController _productDescripiton = TextEditingController();
+  final TextEditingController _prodcutQuantity = TextEditingController();
+  final TextEditingController _productprice = TextEditingController();
+
   final _formKey = GlobalKey<FormState>();
   final FirebaseStorage _storage = FirebaseStorage.instance;
   final FirebaseAuth _auth = FirebaseAuth.instance;
   Uint8List? imag;
-  // var name;
-  // var desc;
-  // var price;
-  // var quantity;
 
   initEditButton() async {
     _productName.text = productName;
@@ -54,8 +49,6 @@ class EditProduct extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     if (productName != null) {
-      print(productName);
-      // print("$productDesc product des");
       initEditButton();
     }
     return Scaffold(
@@ -84,9 +77,6 @@ class EditProduct extends StatelessWidget {
                       children: [
                         IconButton(
                           onPressed: () async {
-                            // if (imag!.isEmpty) {
-                            //   return;
-                            // }
                             await pickImage();
                           },
                           icon: const Icon(
@@ -101,9 +91,7 @@ class EditProduct extends StatelessWidget {
                               fontWeight: FontWeight.bold,
                               color: Colors.white),
                         ),
-                        GetBuilder<Controller>(
-                            // id: 'product',
-                            builder: (controller) {
+                        GetBuilder<Controller>(builder: (controller) {
                           return Container(
                             width: 150,
                             height: 150,
@@ -129,7 +117,7 @@ class EditProduct extends StatelessWidget {
                       fontWeight: FontWeight.bold,
                       color: Colors.black),
                 ),
-                SizedBox(
+                const SizedBox(
                   height: 20,
                 ),
                 Form(
@@ -149,7 +137,7 @@ class EditProduct extends StatelessWidget {
                           },
                           decoration: InputDecoration(hintText: 'Product Name'),
                         ),
-                        SizedBox(
+                        const SizedBox(
                           height: 10,
                         ),
                         TextFormField(
@@ -163,10 +151,10 @@ class EditProduct extends StatelessWidget {
                               return 'Product Descipition required';
                             }
                           },
-                          decoration:
-                              InputDecoration(hintText: 'Product Descripition'),
+                          decoration: const InputDecoration(
+                              hintText: 'Product Descripition'),
                         ),
-                        SizedBox(
+                        const SizedBox(
                           height: 10,
                         ),
                         TextFormField(
@@ -181,9 +169,9 @@ class EditProduct extends StatelessWidget {
                             }
                           },
                           decoration:
-                              InputDecoration(hintText: 'Product Price'),
+                              const InputDecoration(hintText: 'Product Price'),
                         ),
-                        SizedBox(
+                        const SizedBox(
                           height: 10,
                         ),
                         TextFormField(
@@ -197,12 +185,12 @@ class EditProduct extends StatelessWidget {
                             }
                           },
                           controller: _prodcutQuantity,
-                          decoration:
-                              InputDecoration(hintText: 'Product Quantity'),
+                          decoration: const InputDecoration(
+                              hintText: 'Product Quantity'),
                         ),
                       ],
                     )),
-                SizedBox(
+                const SizedBox(
                   height: 20,
                 ),
                 Center(
@@ -261,11 +249,9 @@ class EditProduct extends StatelessWidget {
       controller.upimage = await file.readAsBytes();
       controller.update();
     }
-    print('No image se');
   }
 
   Future<String> selectImage() async {
-    // Uint8List im = await pickImage();
     String _image =
         await controller.updateImageToStorage('prod', controller.upimage!);
     return _image;
