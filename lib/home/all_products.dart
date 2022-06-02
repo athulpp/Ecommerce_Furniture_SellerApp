@@ -8,18 +8,15 @@ import 'package:lottie/lottie.dart';
 import 'package:seller/control/bottom_navigation.dart';
 import 'package:seller/control/controller.dart';
 import 'package:seller/edit_page/edit_page.dart';
-import 'package:seller/home/detail_screen.dart';
-import 'package:seller/home/product_detail.dart';
-import 'package:seller/model/product_model.dart';
 
 class AllProductList extends StatelessWidget {
   AllProductList({Key? key}) : super(key: key);
   final Stream<QuerySnapshot> _productStream =
       FirebaseFirestore.instance.collection('products').snapshots();
-  TextEditingController _productName = TextEditingController();
-  TextEditingController _productDescripiton = TextEditingController();
-  TextEditingController _prodcutQuantity = TextEditingController();
-  TextEditingController _productprice = TextEditingController();
+  final TextEditingController _productName = TextEditingController();
+  final TextEditingController _productDescripiton = TextEditingController();
+  final TextEditingController _prodcutQuantity = TextEditingController();
+  final TextEditingController _productprice = TextEditingController();
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -55,23 +52,9 @@ class AllProductList extends StatelessWidget {
                           child: Card(
                             elevation: 5,
                             child: ListTile(
-                              // Get.to(() => DetailScreen(
-                              //       productId: documentSnapshot.id,
-                              //       productName:
-                              //           documentSnapshot['productname'],
-                              //       productDesc:
-                              //           documentSnapshot['productdes'],
-                              //       productPrice:
-                              //           documentSnapshot['productprice'],
-                              //       productQuantity:
-                              //           documentSnapshot['productquantity'],
-                              //       productImage:
-                              //           documentSnapshot['productimage'],
-                              //     ));
-
                               title: Column(
                                 children: [
-                                  SizedBox(
+                                  const SizedBox(
                                     width: 20,
                                   ),
                                   Text(
@@ -81,15 +64,13 @@ class AllProductList extends StatelessWidget {
                                         fontWeight: FontWeight.bold,
                                         fontSize: 18),
                                   ),
-                                  SizedBox(
+                                  const SizedBox(
                                     height: 10,
                                   ),
                                   Container(
                                     width: 100,
                                     height: 100,
                                     decoration: BoxDecoration(
-                                      // color: Colors.grey.shade100,
-                                      // border: Border.all(color: Colors.grey),
                                       image: DecorationImage(
                                         image: NetworkImage(
                                             documentSnapshot['productimage']),
@@ -98,15 +79,10 @@ class AllProductList extends StatelessWidget {
                                   ),
                                 ],
                               ),
-                              // subtitle: Text(
-                              //   documentSnapshot['productname'],
-                              //   style: TextStyle(fontWeight: FontWeight.bold),
-                              // ),
                               trailing: Wrap(
                                 children: [
                                   Container(
                                       margin: const EdgeInsets.all(15.0),
-                                      // padding: const EdgeInsets.all(3.0),
                                       decoration: BoxDecoration(
                                           border:
                                               Border.all(color: Colors.white),
@@ -125,7 +101,7 @@ class AllProductList extends StatelessWidget {
                                               barrierDismissible: true,
                                               title: 'Edit Product',
                                               titleStyle:
-                                                  TextStyle(fontSize: 18),
+                                                  const TextStyle(fontSize: 18),
                                               middleText:
                                                   "Do you Want to Edit this Product",
                                               middleTextStyle: const TextStyle(
@@ -153,9 +129,6 @@ class AllProductList extends StatelessWidget {
                                                       productQuantity:
                                                           documentSnapshot[
                                                               'productquantity'],
-                                                      // productCategory:
-                                                      //     documentSnapshot[
-                                                      //         'productCategory'],
                                                       productImage:
                                                           documentSnapshot[
                                                               'productimage'],
@@ -172,20 +145,15 @@ class AllProductList extends StatelessWidget {
                                       )),
                                   Container(
                                       margin: const EdgeInsets.all(15.0),
-                                      // padding: const EdgeInsets.all(3.0),
                                       decoration: BoxDecoration(
                                           border:
                                               Border.all(color: Colors.white),
                                           color: Colors.white),
                                       child: TextButton(
                                         style: ButtonStyle(
-                                          // elevation: MaterialStateProperty.all(20),
                                           backgroundColor:
                                               MaterialStateProperty.all(
                                                   Colors.red),
-                                          // padding: MaterialStateProperty.all(
-                                          //     const EdgeInsets.symmetric(
-                                          //         horizontal: 10, vertical: 10)),
                                         ),
                                         onPressed: () {
                                           Get.defaultDialog(
@@ -193,8 +161,7 @@ class AllProductList extends StatelessWidget {
                                               barrierDismissible: true,
                                               title: 'Delete Product',
                                               titleStyle:
-                                                  TextStyle(fontSize: 18),
-                                              // backgroundColor: Colors.grey,
+                                                  const TextStyle(fontSize: 18),
                                               middleText:
                                                   "Do you Want to Delete this Product",
                                               middleTextStyle: const TextStyle(
@@ -222,17 +189,11 @@ class AllProductList extends StatelessWidget {
                                                     productQuantity:
                                                         documentSnapshot[
                                                             'productquantity'],
-                                                    // productCategory:
-                                                    //     documentSnapshot[
-                                                    //         'productcategory'],
                                                     file: documentSnapshot[
                                                         'productimage']);
                                                 Get.to(
                                                     () => BottomNavigation());
-                                              }
-
-                                              // confirm: data_control.logOut(context),
-                                              );
+                                              });
                                         },
                                         child: Text(
                                           'Delete',
