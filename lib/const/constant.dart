@@ -21,4 +21,5 @@ const height10 = SizedBox(
 
 const mainHeading = TextStyle(fontSize: 24, fontWeight: FontWeight.bold);
 
+// ignore: constant_identifier_names
 const MediumformHead = TextStyle(fontSize: 18, fontWeight: FontWeight.bold);

@@ -1,7 +1,7 @@
 import 'dart:typed_data';
 
-import 'package:firebase_auth/firebase_auth.dart';
-import 'package:firebase_storage/firebase_storage.dart';
+// import 'package:firebase_auth/firebase_auth.dart';
+// import 'package:firebase_storage/firebase_storage.dart';
 import 'package:flutter/material.dart';
 
 import 'package:fluttertoast/fluttertoast.dart';
@@ -15,18 +15,19 @@ import 'package:seller/control/controller.dart';
 
 import 'package:uuid/uuid.dart';
 
-var uuid = Uuid();
+var uuid =const Uuid();
 
+// ignore: must_be_immutable
 class NewProductScreen extends StatelessWidget {
   NewProductScreen({Key? key}) : super(key: key);
-  TextEditingController _productName = TextEditingController();
-  TextEditingController _productDescripiton = TextEditingController();
-  TextEditingController _prodcutQuantity = TextEditingController();
-  TextEditingController _productprice = TextEditingController();
+ final TextEditingController _productName = TextEditingController();
+ final TextEditingController _productDescripiton = TextEditingController();
+  final TextEditingController _prodcutQuantity = TextEditingController();
+  final TextEditingController _productprice = TextEditingController();
 
   final _formKey = GlobalKey<FormState>();
-  final FirebaseStorage _storage = FirebaseStorage.instance;
-  final FirebaseAuth _auth = FirebaseAuth.instance;
+  // final FirebaseStorage _storage = FirebaseStorage.instance;
+  // final FirebaseAuth _auth = FirebaseAuth.instance;
   Uint8List? imag;
 
   @override
@@ -176,10 +177,11 @@ class NewProductScreen extends StatelessWidget {
                           if (!regex.hasMatch(value)) {
                             return ("Minimum 1 product required)");
                           }
+                          return null;
                         },
                         controller: _prodcutQuantity,
                         decoration:
-                            InputDecoration(hintText: 'Product Quantiy'),
+                           const InputDecoration(hintText: 'Product Quantiy'),
                       ),
                     ],
                   )),

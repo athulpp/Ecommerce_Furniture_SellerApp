@@ -1,7 +1,7 @@
 import 'dart:typed_data';
 
-import 'package:firebase_auth/firebase_auth.dart';
-import 'package:firebase_storage/firebase_storage.dart';
+// import 'package:firebase_auth/firebase_auth.dart';
+// import 'package:firebase_storage/firebase_storage.dart';
 import 'package:flutter/material.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 import 'package:get/get.dart';
@@ -11,6 +11,7 @@ import 'package:image_picker/image_picker.dart';
 import 'package:seller/control/bottom_navigation.dart';
 import 'package:seller/control/controller.dart';
 
+// ignore: must_be_immutable
 class EditProduct extends StatelessWidget {
   EditProduct(
       {Key? key,
@@ -34,8 +35,8 @@ class EditProduct extends StatelessWidget {
   final TextEditingController _productprice = TextEditingController();
 
   final _formKey = GlobalKey<FormState>();
-  final FirebaseStorage _storage = FirebaseStorage.instance;
-  final FirebaseAuth _auth = FirebaseAuth.instance;
+  // final FirebaseStorage _storage = FirebaseStorage.instance;
+  // final FirebaseAuth _auth = FirebaseAuth.instance;
   Uint8List? imag;
 
   initEditButton() async {
@@ -135,7 +136,7 @@ class EditProduct extends StatelessWidget {
                               return "Please Enter Product Name";
                             }
                           },
-                          decoration: InputDecoration(hintText: 'Product Name'),
+                          decoration:const InputDecoration(hintText: 'Product Name'),
                         ),
                         const SizedBox(
                           height: 10,

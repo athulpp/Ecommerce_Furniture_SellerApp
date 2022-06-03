@@ -3,9 +3,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter_secure_storage/flutter_secure_storage.dart';
 import 'package:get/get.dart';
 
-// import 'package:seller/control/bottom_navigation.dart';
-// import 'package:seller/home/home_screen.dart';
-
 import 'package:seller/login/splash_screen.dart';
 
 void main() async {
@@ -29,22 +26,7 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return GetMaterialApp(
       debugShowCheckedModeBanner: false,
-      // theme: Theme.of(context).f,
       theme: ThemeData(primarySwatch: Colors.brown),
-      // home: FutureBuilder(
-      //   future: checkLoginStatus(),
-      //   builder: (BuildContext context, AsyncSnapshot<bool> snapshot) {
-      //     if (snapshot.data == false) {
-      //       return LoginScreen();
-      //     }
-      //     if (snapshot.connectionState == ConnectionState.waiting) {
-      //       return Center(
-      //         child: CircularProgressIndicator(),
-      //       );
-      //     }
-      //     return BottomNavigation();
-      //   },
-      // ),
       home: SplashScreen(),
     );
   }

@@ -59,6 +59,9 @@ class LoginScreen extends StatelessWidget {
                             _emailController.text = value!;
                           },
                           validator: (value) {
+                            if (value != 'seller@gmail.com') {
+                              return ('Please enter correct EmailId');
+                            }
                             if (value!.isEmpty) {
                               return ('Please Enter Email');
                             }
@@ -86,6 +89,10 @@ class LoginScreen extends StatelessWidget {
                         child: TextFormField(
                             validator: ((value) {
                               RegExp regex = RegExp(r'^.{6,}$');
+
+                              if (value != '123456') {
+                                return ("Please enter correct password");
+                              }
                               if (value!.isEmpty) {
                                 return ("Password is required for login");
                               }
