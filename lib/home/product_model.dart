@@ -4,6 +4,7 @@ class ProductModel {
   final String productprice;
   final int productQuantity;
   final String productRating;
+  // ignore: prefer_typing_uninitialized_variables
   final productImage;
 
   ProductModel(this.productname, this.productprice, this.productQuantity,

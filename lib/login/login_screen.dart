@@ -7,13 +7,14 @@ import '../const/constant.dart';
 import '../const/custom_button.dart';
 import '../control/bottom_navigation.dart';
 
+// ignore: must_be_immutable
 class LoginScreen extends StatelessWidget {
   LoginScreen({Key? key}) : super(key: key);
   final auth = FirebaseAuth.instance;
   final TextEditingController _emailController = TextEditingController();
   final TextEditingController _passwordController = TextEditingController();
   final _formKey = GlobalKey<FormState>();
-  final storage = new FlutterSecureStorage();
+  final storage = const FlutterSecureStorage();
   String? result;
   @override
   Widget build(BuildContext context) {
@@ -99,6 +100,7 @@ class LoginScreen extends StatelessWidget {
                               if (!regex.hasMatch(value)) {
                                 return ("Enter Valid Password(Min. 6 Character)");
                               }
+                              return null;
                             }),
                             onSaved: (value) {
                               _passwordController.text = value!;
@@ -142,7 +144,7 @@ class LoginScreen extends StatelessWidget {
           Fluttertoast.showToast(msg: "Login Successful");
           Navigator.push(context,
               MaterialPageRoute(builder: (context) => BottomNavigation()));
-          print(userCredential.user?.uid);
+      
           await storage.write(key: "uid", value: userCredential.user?.uid);
         } on FirebaseAuthException catch (error) {
           Fluttertoast.showToast(

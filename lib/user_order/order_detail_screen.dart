@@ -9,6 +9,7 @@ import 'package:seller/model/address.dart';
 import 'package:seller/model/cart.dart';
 import 'package:seller/model/order.dart';
 
+// ignore: must_be_immutable
 class MyOrderDetailsScreen extends StatelessWidget {
   MyOrderDetailsScreen(
       {Key? key,
@@ -23,7 +24,9 @@ class MyOrderDetailsScreen extends StatelessWidget {
       required this.orderId,
       required this.orderImage,
       required this.orderPrice,
+      // ignore: non_constant_identifier_names
       required this.Quantity,
+      // ignore: non_constant_identifier_names
       required this.OrderDate,
       required this.status})
       : super(key: key);
@@ -35,10 +38,14 @@ class MyOrderDetailsScreen extends StatelessWidget {
   String orderName;
   String orderDes;
   String prodPrice;
+  // ignore: prefer_typing_uninitialized_variables
   final orderId;
+  // ignore: prefer_typing_uninitialized_variables
   final orderImage;
   double orderPrice;
+  // ignore: non_constant_identifier_names
   String Quantity;
+  // ignore: non_constant_identifier_names
   Timestamp OrderDate;
   String status;
 
@@ -134,7 +141,6 @@ class MyOrderDetailsScreen extends StatelessWidget {
                                   fontSize: 18, fontWeight: FontWeight.w500),
                             ),
                           ),
-                    
                           Padding(
                             padding: const EdgeInsets.symmetric(vertical: 12),
                             child: Text(
@@ -148,12 +154,11 @@ class MyOrderDetailsScreen extends StatelessWidget {
                             style: GoogleFonts.acme(
                                 fontSize: 18, fontWeight: FontWeight.w500),
                           ),
-                
                         ],
                       ),
                     ),
                   ),
-               const   SizedBox(
+                  const SizedBox(
                     height: 20,
                   ),
                   Material(
@@ -196,7 +201,6 @@ class MyOrderDetailsScreen extends StatelessWidget {
                                   fontSize: 18, fontWeight: FontWeight.w500),
                             ),
                           ),
-     
                           Padding(
                             padding: const EdgeInsets.symmetric(vertical: 12),
                             child: Text(
@@ -290,6 +294,7 @@ class MyOrderDetailsScreen extends StatelessWidget {
     );
   }
 
+  // ignore: non_constant_identifier_names
   Widget CustomButton(
       Size size, VoidCallback function, Color color, String title) {
     return GestureDetector(
@@ -364,10 +369,6 @@ Widget orderDetails(Size size, each) {
                 text('Status :', 'model.status == 0 ?' 'Pending' ': Delivered'),
           ),
           text('Ordered on :', '11-12-2021'),
-          // Padding(
-          //   padding: const EdgeInsets.symmetric(vertical: 12),
-          //   child: text('Delivered on :', '28-10-2021'),
-          // ),
         ],
       ),
     ),
@@ -383,11 +384,6 @@ void changeStatus(
       .collection('order')
       .doc(model.orderId)
       .update(model.toMap());
-  // model.status = currentStatus;
-  // orderCollection.set(model.toMap()).then((value) {
-
-  // });
-  // getOrders();
 }
 
 void cancelStatus(Order model) async {
@@ -398,8 +394,3 @@ void cancelStatus(Order model) async {
       .doc(model.orderId)
       .update(model.toMap());
 }
-//   Future<String>getTokenId(String id) async {
-//   final token =
-//       await FirebaseFirestore.instance.collection('users').doc(id).get();
-//   return token.data()!['token'];
-// }
