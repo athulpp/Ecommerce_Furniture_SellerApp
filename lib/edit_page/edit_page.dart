@@ -49,9 +49,7 @@ class EditProduct extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    if (productName != null) {
-      initEditButton();
-    }
+    initEditButton();
     return Scaffold(
       resizeToAvoidBottomInset: false,
       appBar: AppBar(
@@ -135,8 +133,10 @@ class EditProduct extends StatelessWidget {
                             if (value!.isEmpty) {
                               return "Please Enter Product Name";
                             }
+                            return null;
                           },
-                          decoration:const InputDecoration(hintText: 'Product Name'),
+                          decoration:
+                              const InputDecoration(hintText: 'Product Name'),
                         ),
                         const SizedBox(
                           height: 10,
@@ -151,6 +151,7 @@ class EditProduct extends StatelessWidget {
                             if (value!.isEmpty) {
                               return 'Product Descipition required';
                             }
+                            return null;
                           },
                           decoration: const InputDecoration(
                               hintText: 'Product Descripition'),
@@ -168,6 +169,7 @@ class EditProduct extends StatelessWidget {
                             if (value!.isEmpty) {
                               return 'product Price is Required';
                             }
+                            return null;
                           },
                           decoration:
                               const InputDecoration(hintText: 'Product Price'),
@@ -184,6 +186,7 @@ class EditProduct extends StatelessWidget {
                             if (value!.isEmpty) {
                               return 'Product Quantity is Required';
                             }
+                            return null;
                           },
                           controller: _prodcutQuantity,
                           decoration: const InputDecoration(

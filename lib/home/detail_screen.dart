@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 
+// ignore: must_be_immutable
 class DetailScreen extends StatelessWidget {
   DetailScreen(
       {Key? key,
@@ -10,6 +11,7 @@ class DetailScreen extends StatelessWidget {
       required this.productPrice,
       required this.productImage})
       : super(key: key);
+  // ignore: prefer_typing_uninitialized_variables
   final productId;
   String productName;
   String productDesc;
@@ -22,16 +24,14 @@ class DetailScreen extends StatelessWidget {
       backgroundColor: Colors.brown.shade200,
       appBar: AppBar(
         backgroundColor: Colors.brown.shade200,
-        title: Text(
+        title: const Text(
           'Product Detail ',
         ),
         centerTitle: true,
         elevation: 0,
       ),
       body: Column(
-        // scrollDirection: Axis.vertical,
-        // shrinkWrap: true,
-        // crossAxisAlignment: CrossAxisAlignment.start,
+  
         children: [
           Padding(
             padding: const EdgeInsets.all(8.0),
@@ -54,9 +54,9 @@ class DetailScreen extends StatelessWidget {
           Container(
             width: double.infinity,
             height: MediaQuery.of(context).size.height * 0.445,
-            decoration: BoxDecoration(
+            decoration:  BoxDecoration(
                 color: Colors.grey.shade300,
-                borderRadius: BorderRadius.only(
+                borderRadius:const BorderRadius.only(
                     topLeft: Radius.circular(20),
                     topRight: Radius.circular(20))),
             child: Padding(
@@ -67,7 +67,7 @@ class DetailScreen extends StatelessWidget {
                   Text(
                     productName,
                     overflow: TextOverflow.ellipsis,
-                    style: TextStyle(fontSize: 28, fontWeight: FontWeight.bold),
+                    style:const TextStyle(fontSize: 28, fontWeight: FontWeight.bold),
                   ),
                   const SizedBox(
                     height: 20,
@@ -76,31 +76,31 @@ class DetailScreen extends StatelessWidget {
                     productDesc,
                     style: const TextStyle(fontSize: 16),
                   ),
-                  SizedBox(
+                const  SizedBox(
                     height: 30,
                   ),
                   Container(
                     decoration: BoxDecoration(
                         color: Colors.brown.shade100,
-                        borderRadius: BorderRadius.all(Radius.circular(20))),
+                        borderRadius:const BorderRadius.all(Radius.circular(20))),
                     width: 300,
                     height: 100,
                     child: Row(
                       children: [
-                        SizedBox(
+                       const SizedBox(
                           width: 30,
                         ),
                         Text(
                           "Price: ₹$productPrice",
-                          style: TextStyle(
+                          style:const TextStyle(
                               fontSize: 20, fontWeight: FontWeight.bold),
                         ),
-                        SizedBox(
+                      const  SizedBox(
                           width: 10,
                         ),
                         Text(
                           "Quantity: $productQuantity",
-                          style: TextStyle(
+                          style:const TextStyle(
                               fontSize: 20, fontWeight: FontWeight.bold),
                         )
                       ],
@@ -115,7 +115,5 @@ class DetailScreen extends StatelessWidget {
     );
   }
 
-  void product() {
-    print(productPrice);
-  }
+ 
 }

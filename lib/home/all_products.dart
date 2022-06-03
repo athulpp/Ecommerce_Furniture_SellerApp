@@ -1,5 +1,3 @@
-import 'dart:ffi';
-
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
@@ -13,10 +11,10 @@ class AllProductList extends StatelessWidget {
   AllProductList({Key? key}) : super(key: key);
   final Stream<QuerySnapshot> _productStream =
       FirebaseFirestore.instance.collection('products').snapshots();
-  final TextEditingController _productName = TextEditingController();
-  final TextEditingController _productDescripiton = TextEditingController();
-  final TextEditingController _prodcutQuantity = TextEditingController();
-  final TextEditingController _productprice = TextEditingController();
+  // final TextEditingController _productName = TextEditingController();
+  // final TextEditingController _productDescripiton = TextEditingController();
+  // final TextEditingController _prodcutQuantity = TextEditingController();
+  // final TextEditingController _productprice = TextEditingController();
   @override
   Widget build(BuildContext context) {
     return Scaffold(
